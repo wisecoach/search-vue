@@ -1,3 +1,8 @@
+// change the theme color for element-ui
+
+
+
+
 // cover some element-ui styles
 
 .el-breadcrumb__inner,
@@ -81,4 +86,12 @@
 // to fix el-date-picker css style
 .el-range-separator {
   box-sizing: content-box;
+}
+
+
+$--font-path: '~element-ui/lib/theme-chalk/fonts';
+@import "~element-ui/packages/theme-chalk/src/index";
+
+:export {
+  theme_color: $--color-primary;
 }

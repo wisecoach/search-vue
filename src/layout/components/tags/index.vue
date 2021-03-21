@@ -1,13 +1,16 @@
 <template>
-$END$
 </template>
 
 <script>
 export default {
-name: "index"
+  name: "index"
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 
+.tags-container {
+  height: 34px;
+  width: 100%;
+}
 </style>

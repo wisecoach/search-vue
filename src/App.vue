@@ -1,22 +1,36 @@
 <template>
-  <div id="app">
-    <router-view/>
+  <div id="app" :class="theme" :style="{'--current-color': theme_color}">
+    <router-view />
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
+import { theme_options } from '@/settings-options'
+
 export default {
-  name: 'App'
+  name: 'App',
+  data(){
+    return {
+      theme_options: theme_options
+    }
+  },
+  computed: {
+    ...mapState({
+      theme: state => state.settings.theme,
+      theme_color: state => state.settings.theme_color
+    })
+  },
+  methods: {
+    change(){
+      this.$store.dispatch('settings/changeSetting', {
+        key: 'theme',
+        value: ''
+      })
+    }
+  }
 }
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
 </style>

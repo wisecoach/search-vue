@@ -2,6 +2,11 @@ module.exports = {
   title: '斯尔奇人才管理系统',
 
   /**
+   * 主题颜色
+   */
+  theme: 'theme-standard',
+
+  /**
    * 侧边栏主题 深色主题theme-dark，浅色主题theme-light
    */
   sideTheme: 'theme-dark',
@@ -14,12 +19,22 @@ module.exports = {
   /**
    * 是否显示 tagsView
    */
-  tagsView: true,
+  tags: true,
+
+  /**
+   * 是否打开侧边栏
+   */
+  sidebarOpened: true,
+
+  /**
+   * 默认大小
+   */
+  size: 'medium',
 
   /**
    * 是否固定头部
    */
-  fixedHeader: false,
+  fixedHeader: true,
 
   /**
    * 是否显示logo

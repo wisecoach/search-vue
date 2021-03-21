@@ -1,0 +1,16 @@
+#app.theme-standard{
+  @import "./theme/theme-standard";
+  @import "app-base";
+}
+
+#app.theme-light{
+  @import "./theme/theme-light";
+  @import "app-base";
+}
+
+#app.theme-dark{
+  @import "./theme/theme-dark";
+  @import "app-base";
+}
+
+
