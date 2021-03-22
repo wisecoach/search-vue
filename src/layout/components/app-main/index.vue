@@ -1,12 +1,27 @@
 <template>
   <div class="app-main">
-    app-main
+    <el-button @click="handleClick">test</el-button>
+    {{ret}}
   </div>
 </template>
 
 <script>
+import {mocktest} from '@/api/passport'
+
 export default {
-  name: "index"
+  name: "index",
+  data(){
+    return {
+      ret: ''
+    }
+  },
+  methods: {
+    handleClick(){
+      mocktest().then(res=>{
+        this.ret = res.data
+      })
+    }
+  }
 }
 </script>
 
@@ -17,22 +32,9 @@ export default {
   min-height: 100vh;
   width: 100%;
   position: relative;
-  background: #E65D6E;
   overflow-x: hidden;
 }
 
-.fixed-header + .app-main {
-  padding-top: $navbar-height;
-}
 
-.has-tags {
-  .app-main {
-    padding-top: $tags-height;
-  }
-
-  .fixed-header + .app-main {
-    padding-top: $navbar-height + $tags-height;
-  }
-}
 
 </style>

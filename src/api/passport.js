@@ -29,3 +29,12 @@ export function getCodeImg(){
     method: 'get'
   })
 }
+
+export function mocktest(){
+  return request({
+    url: '/api/get/user',
+    method: 'get',
+    data: {'b': 234},
+    params: {'a': 123}
+  })
+}

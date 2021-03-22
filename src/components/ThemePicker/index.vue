@@ -30,59 +30,62 @@ export default {
       },
       immediate: true
     },
-    async theme_color(val) {
-      const oldVal = this.chalk ? this.theme_color : ORIGINAL_THEME
-      if (typeof val !== 'string') return
-      const themeCluster = this.getThemeCluster(val.replace('#', ''))
-      const originalCluster = this.getThemeCluster(oldVal.replace('#', ''))
-      console.log(themeCluster, originalCluster)
+    theme_color: {
+      async handler(val) {
+        const oldVal = this.chalk ? this.theme_color : ORIGINAL_THEME
+        if (typeof val !== 'string') return
+        const themeCluster = this.getThemeCluster(val.replace('#', ''))
+        const originalCluster = this.getThemeCluster(oldVal.replace('#', ''))
+        console.log(themeCluster, originalCluster)
 
-      const $message = this.$message({
-        message: '  Compiling the theme',
-        customClass: 'theme-message',
-        type: 'success',
-        duration: 0,
-        iconClass: 'el-icon-loading'
-      })
-
-      const getHandler = (variable, id) => {
-        return () => {
-          const originalCluster = this.getThemeCluster(ORIGINAL_THEME.replace('#', ''))
-          const newStyle = this.updateStyle(this[variable], originalCluster, themeCluster)
-
-          let styleTag = document.getElementById(id)
-          if (!styleTag) {
-            styleTag = document.createElement('style')
-            styleTag.setAttribute('id', id)
-            document.head.appendChild(styleTag)
-          }
-          styleTag.innerText = newStyle
-        }
-      }
-
-      if (!this.chalk) {
-        const url = `https://unpkg.com/element-ui@${version}/lib/theme-chalk/index.css`
-        await this.getCSSString(url, 'chalk')
-      }
-
-      const chalkHandler = getHandler('chalk', 'chalk-style')
-
-      chalkHandler()
-
-      const styles = [].slice.call(document.querySelectorAll('style'))
-        .filter(style => {
-          const text = style.innerText
-          return new RegExp(oldVal, 'i').test(text) && !/Chalk Variables/.test(text)
+        const $message = this.$message({
+          message: '  Compiling the theme',
+          customClass: 'theme-message',
+          type: 'success',
+          duration: 0,
+          iconClass: 'el-icon-loading'
         })
-      styles.forEach(style => {
-        const { innerText } = style
-        if (typeof innerText !== 'string') return
-        style.innerText = this.updateStyle(innerText, originalCluster, themeCluster)
-      })
 
-      this.$emit('changeTheme', val)
+        const getHandler = (variable, id) => {
+          return () => {
+            const originalCluster = this.getThemeCluster(ORIGINAL_THEME.replace('#', ''))
+            const newStyle = this.updateStyle(this[variable], originalCluster, themeCluster)
 
-      $message.close()
+            let styleTag = document.getElementById(id)
+            if (!styleTag) {
+              styleTag = document.createElement('style')
+              styleTag.setAttribute('id', id)
+              document.head.appendChild(styleTag)
+            }
+            styleTag.innerText = newStyle
+          }
+        }
+
+        if (!this.chalk) {
+          const url = `https://unpkg.com/element-ui@${version}/lib/theme-chalk/index.css`
+          await this.getCSSString(url, 'chalk')
+        }
+
+        const chalkHandler = getHandler('chalk', 'chalk-style')
+
+        chalkHandler()
+
+        const styles = [].slice.call(document.querySelectorAll('style'))
+          .filter(style => {
+            const text = style.innerText
+            return new RegExp(oldVal, 'i').test(text) && !/Chalk Variables/.test(text)
+          })
+        styles.forEach(style => {
+          const { innerText } = style
+          if (typeof innerText !== 'string') return
+          style.innerText = this.updateStyle(innerText, originalCluster, themeCluster)
+        })
+
+        this.$emit('change', val)
+
+        $message.close()
+    },
+      immediate: true
     }
   },
 

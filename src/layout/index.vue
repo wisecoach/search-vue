@@ -4,10 +4,11 @@
     <div class="main-container" :class="{'has-tags': needTagsView}">
       <div class="header-container" :class="{'fixed-header': fixedHeader}">
         <navbar />
-        <div style="color: currentColor">{{device}} {{theme}} {{$store.state.settings.theme_color}}</div>
         <tags />
       </div>
-      <app-main />
+      <div class="app-container">
+        <app-main />
+      </div>
     </div>
   </div>
 </template>

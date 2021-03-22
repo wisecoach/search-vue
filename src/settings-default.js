@@ -34,7 +34,7 @@ module.exports = {
   /**
    * 是否固定头部
    */
-  fixedHeader: true,
+  fixedHeader: false,
 
   /**
    * 是否显示logo

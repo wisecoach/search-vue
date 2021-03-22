@@ -12,6 +12,7 @@ import router from './router'
 
 import './assets/icons'
 import './permission'
+// import './mock'
 
 
 Vue.prototype.msgSuccess = function (msg) {

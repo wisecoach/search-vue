@@ -1,12 +1,10 @@
 <template>
   <div class="navbar">
-    <el-button @click="toggleSideBar">隐藏/打开侧边栏</el-button>
+    <el-button type="primary" @click="toggleSideBar">隐藏/打开侧边栏</el-button>
     <el-button type="primary" @click="changeTheme('theme-standard')">修改主题为standard</el-button>
-    <el-button @click="changeTheme('theme-light')">修改主题为light</el-button>
-    <el-button @click="changeTheme('theme-dark')">修改主题为dark</el-button>
-    <div>
-      <theme-picker @changeTheme="handleChangeTheme" />
-    </div>
+    <el-button type="primary" @click="changeTheme('theme-light')">修改主题为light</el-button>
+    <el-button type="primary" @click="changeTheme('theme-dark')">修改主题为dark</el-button>
+    <theme-picker @change="handleChangeTheme" />
   </div>
 </template>
 
@@ -31,7 +29,6 @@ export default {
       })
     },
     handleChangeTheme(val) {
-      alert('sss')
       this.$store.dispatch('settings/changeSetting', {
         key: 'theme_color',
         value: val
@@ -46,7 +43,6 @@ export default {
 
 .navbar{
   height: $navbar-height;
-  background: #409EFF;
 }
 
 </style>

@@ -1,11 +1,14 @@
+
 .main-container {
   min-height: 100%;
   transition: margin-left $transition-period;
   margin-left: $side-bar-width;
-  right: 0;
   position: relative;
 
   .header-container {
+    background: $nav-bg;
+    -webkit-box-shadow: 0 2px 6px rgba(0,21,41,.35);
+    box-shadow: 0 2px 6px rgba(0,21,41,.35);
 
     &.fixed-header{
       position: fixed;
@@ -13,11 +16,32 @@
       right: 0;
       z-index: 9;
       left: $side-bar-width;
-      background: #4AB7BD;
       transition: left $transition-period;
     }
   }
+
+  .app-container{
+    background: $app-bg;
+    -webkit-box-shadow: 0px -1px 0px 0px black;
+    box-shadow: 0px -1px 0px 0px black;
+  }
+
+  .fixed-header + .app-container {
+    padding-top: $navbar-height;
+  }
+
+  &.has-tags {
+    .app-container {
+      padding-top: $tags-height;
+    }
+
+    .fixed-header + .app-container {
+      padding-top: $navbar-height + $tags-height;
+    }
+  }
 }
+
+
 
 .sidebar-container {
   -webkit-transition: width $transition-period;
@@ -185,7 +209,6 @@
     margin-left: 0;
 
     .header-container {
-      background: #FEC171;
       &.fixed-header {
         left: 0;
       }
