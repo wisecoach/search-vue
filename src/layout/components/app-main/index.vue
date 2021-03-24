@@ -1,7 +1,6 @@
 <template>
   <div class="app-main">
-    <el-button @click="handleClick">test</el-button>
-    {{ret}}
+    <router-view />
   </div>
 </template>
 

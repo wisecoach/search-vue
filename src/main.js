@@ -14,7 +14,6 @@ import './assets/icons'
 import './permission'
 // import './mock'
 
-
 Vue.prototype.msgSuccess = function (msg) {
   this.$message({ showClose: true, message: msg, type: "success" });
 }

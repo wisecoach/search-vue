@@ -50,7 +50,6 @@
   background-color: $menu-bg;
   height: 100%;
   position: fixed;
-  font-size: 0px;
   top: 0;
   bottom: 0;
   left: 0;
@@ -58,6 +57,19 @@
   overflow: hidden;
   -webkit-box-shadow: 2px 0 6px rgba(0,21,41,.35);
   box-shadow: 2px 0 6px rgba(0,21,41,.35);
+
+  .sidebar-logo-container .hamburger-container {
+    width: $side-bar-hidden-width;
+    float: right;
+    cursor: pointer;
+    transition: background $transition-period;
+    -webkit-tap-highlight-color:transparent;
+    color: $hamburger-fill;
+
+    &:hover {
+      background: rgba(0, 0, 0, .025)
+    }
+  }
 
   // reset element-ui css
   .horizontal-collapse-transition {
@@ -99,6 +111,7 @@
   .el-menu {
     border: none;
     height: 100%;
+    background: $menu-bg;
     width: 100% !important;
   }
 

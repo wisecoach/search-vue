@@ -1,6 +1,13 @@
 import {encrypt} from "@/utils/encrypt";
 import request from '@/utils/request'
 
+export function getInfo(){
+  return request({
+    url: '/passport/info',
+    method: 'get'
+  })
+}
+
 export function login(username, password, code, uuid){
   const encrypt_pwd = encrypt(password)
   const data = {

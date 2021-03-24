@@ -1,5 +1,7 @@
 const state = {
-  visited_Views: [],
+  visited_views: [
+    {}
+  ],
   cached_views: []
 }
 
