@@ -36,7 +36,6 @@ export default {
         if (typeof val !== 'string') return
         const themeCluster = this.getThemeCluster(val.replace('#', ''))
         const originalCluster = this.getThemeCluster(oldVal.replace('#', ''))
-        console.log(themeCluster, originalCluster)
 
         const $message = this.$message({
           message: '  Compiling the theme',
@@ -50,7 +49,6 @@ export default {
           return () => {
             const originalCluster = this.getThemeCluster(ORIGINAL_THEME.replace('#', ''))
             const newStyle = this.updateStyle(this[variable], originalCluster, themeCluster)
-
             let styleTag = document.getElementById(id)
             if (!styleTag) {
               styleTag = document.createElement('style')

@@ -66,10 +66,8 @@ export default {
   width: 100%;
   height: $navbar-height;
   line-height: $navbar-height;
-  background: #2b2f3a;
   text-align: center;
   overflow: hidden;
-
 
   .logo {
     font-size: 20px;

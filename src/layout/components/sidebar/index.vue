@@ -4,6 +4,11 @@
     <el-scrollbar wrap-class="scrollbar-wrapper">
       <el-menu
         :collapse="isCollapse"
+        :default-active="activeMenu"
+        :collapse-transition="false"
+        mode="vertical"
+        router
+        @select="handleSelect"
       >
         <sidebar-item
           v-for="(route, index) in sidebarRouters"
@@ -28,15 +33,22 @@ export default {
   computed: {
     ...mapState('settings'),
     ...mapGetters(['sidebar', 'sidebarRouters']),
+    activeMenu() {
+      const route = this.$route;
+      const { meta, path } = route;
+      console.log(path)
+      return path;
+    },
     isCollapse(){
       return !this.sidebar.opened
-    },
-    variables(){
     }
   },
   methods: {
     toggleClick(){
       this.$store.dispatch('app/toggleSideBar')
+    },
+    handleSelect(index, indexPath){
+      console.log(index + indexPath)
     }
   }
 }
