@@ -27,7 +27,7 @@
 <script>
 import {logout} from '@/api/passport'
 import {theme_options} from '@/settings-options'
-import ThemePicker from '@/components/ThemePicker'
+import ThemePicker from '@/components/theme-picker'
 import {mapGetters} from 'vuex'
 
 

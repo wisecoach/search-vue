@@ -1,12 +1,11 @@
 <template>
   <div>
-
   </div>
 </template>
 
 <script>
 export default {
-  name: "index",
+  name: "personal-info",
   props: {
     employee: {
       type: Object,

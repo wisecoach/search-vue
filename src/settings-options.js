@@ -11,6 +11,7 @@ module.exports = {
         path: '',
         hidden: false,
         component: 'layout',
+        redirect: 'index',
         meta: {
           icon: "system",
           title: '首页'

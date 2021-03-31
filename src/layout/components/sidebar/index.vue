@@ -8,7 +8,6 @@
         :collapse-transition="false"
         mode="vertical"
         router
-        @select="handleSelect"
       >
         <sidebar-item
           v-for="(route, index) in sidebarRouters"
@@ -23,7 +22,7 @@
 
 <script>
 import {mapState, mapGetters} from 'vuex'
-import Hamburger from '@/components/Hamburger'
+import Hamburger from '@/components/hamburger'
 import Logo from './Logo'
 import SidebarItem from "./SidebarItem";
 
@@ -36,7 +35,6 @@ export default {
     activeMenu() {
       const route = this.$route;
       const { meta, path } = route;
-      console.log(path)
       return path;
     },
     isCollapse(){
@@ -47,9 +45,6 @@ export default {
     toggleClick(){
       this.$store.dispatch('app/toggleSideBar')
     },
-    handleSelect(index, indexPath){
-      console.log(index + indexPath)
-    }
   }
 }
 </script>

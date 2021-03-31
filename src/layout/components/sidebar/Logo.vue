@@ -15,7 +15,7 @@
 
 <script>
 import variables from '@/assets/styles/variables.scss'
-import Hamburger from "@/components/Hamburger";
+import Hamburger from "@/components/hamburger";
 import {mapGetters} from "vuex";
 
 export default {

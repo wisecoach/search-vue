@@ -6,6 +6,9 @@ import ElementUI from 'element-ui'
 import '@/assets/styles/element-ui.scss'
 import '@/assets/styles/index.scss'
 
+import echarts from 'echarts'
+Vue.prototype.$echarts = echarts
+
 import App from './App'
 import store from './store'
 import router from './router'
