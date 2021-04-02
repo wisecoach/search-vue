@@ -3,9 +3,6 @@
 #app.theme-standard{
   @import "./theme/theme-standard";
   @import "app-base";
-  :export {
-    menuBg: $menu-bg
-  }
 }
 
 #app.theme-light{

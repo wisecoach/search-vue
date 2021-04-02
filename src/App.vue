@@ -32,5 +32,6 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
+@import "theme-dark.css";
 </style>

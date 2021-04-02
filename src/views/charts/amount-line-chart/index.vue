@@ -1,10 +1,10 @@
 <template>
   <div>
-    <el-button @click="addOccupation">
+    <occupation-picker @select="handleSelect" style="display: inline-block"></occupation-picker>
+    <el-button @click="handleAddOccupation" :disabled="!selected">
       新增职业
     </el-button>
     <div ref="chart" :style="{height:'350px',width:'800px'}">
-
     </div>
   </div>
 </template>
@@ -12,20 +12,23 @@
 <script>
 import echarts from 'echarts'
 require('echarts/theme/macarons') // echarts theme
+import {getAmount} from '@/api/chart'
+import {formDateBeforeList} from '@/utils/date'
+import OccupationPicker from '@/components/occupation-picker'
 
 export default {
   name: 'line-chart',
+  components: {OccupationPicker},
   props: {
   },
   data() {
     return {
       chart: null,
-      legends: ['职业i'],
-      series: [{
-        name: '职业i',
-        type: 'line',
-        data: [1,2,3,4,5,6]
-      }]
+      legends: [],
+      series: [],
+      selected: false,
+      occid: 0,
+      size: 7
     }
   },
   watch: {
@@ -50,11 +53,21 @@ export default {
   computed: {
     option:function (){
       return {
+        darkMode: true,
+        title: {
+          text: '在职人数折线图',
+          y: 'bottom',
+          x: 'center',
+          padding: 0
+        },
         xAxis: {
-          data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+          data: formDateBeforeList(this.size, 'MM-dd', 'd'),
           boundaryGap: false,
           axisTick: {
             show: false
+          },
+          axisLabel: {
+            showMaxLabel: true
           }
         },
         grid: {
@@ -81,27 +94,38 @@ export default {
         },
         series: this.series
       }
-    }
+    },
   },
   methods: {
     initChart() {
-      this.chart = echarts.init(this.$refs.chart, 'macarons')
-      this.setOptions(this.option)
+      this.chart = echarts.init(this.$refs.chart, this.$store.state.settings.theme === 'theme-dark' ? 'dark' : null)
+      this.handleAddOccupation()
     },
     setOptions() {
       this.chart.clear()
       this.chart.setOption(this.option, true )
     },
-    addOccupation(){
-      let legend = '职业i'
-      let seriesObj = {
-        name: legend,
-        type: 'line',
-        data: [1,2,3,4,5,6,7]
-      }
-      this.legends.push(legend)
-      this.series.push(seriesObj)
-      console.log(this.option)
+    handleAddOccupation(){
+      this.selected = false
+      getAmount(this.occid).then(res => {
+        let body = res.data
+        if (body.code === 100){
+          let data = body.data
+          let legend = data.occupation.name
+          let seriesObj = {
+            name: legend,
+            type: 'line',
+            data: data.series
+          }
+          this.legends.push(legend)
+          this.series.push(seriesObj)
+          this.setOptions()
+        }
+      })
+    },
+    handleSelect(val){
+      this.selected = true
+      this.occid = val
     }
   }
 }

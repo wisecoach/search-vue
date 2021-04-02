@@ -8,6 +8,7 @@
 </template>
 
 <script>
+import {mapState} from 'vuex'
 const version = require('element-ui/package.json').version // element-ui version from node_modules
 const ORIGINAL_THEME = '#409EFF' // default color
 
@@ -15,16 +16,20 @@ export default {
   data() {
     return {
       chalk: '', // content of theme-chalk css
-      theme_color: ''
+      theme_color: '',
+      theme: ''
     }
   },
   computed: {
-    defaultTheme() {
+    defaultThemeColor() {
       return this.$store.state.settings.theme_color
+    },
+    defaultTheme() {
+      return this.$store.state.settings.theme
     }
   },
   watch: {
-    defaultTheme: {
+    defaultThemeColor: {
       handler: function(val, oldVal) {
         this.theme_color = val
       },
@@ -60,7 +65,7 @@ export default {
         }
 
         if (!this.chalk) {
-          const url = `https://unpkg.com/element-ui@${version}/lib/theme-chalk/index.css`
+          const url = `http://localhost:8081/theme-dark.css`
           await this.getCSSString(url, 'chalk')
         }
 
@@ -83,6 +88,66 @@ export default {
 
         $message.close()
     },
+      immediate: true
+    },
+    defaultTheme: {
+      handler: function(val, oldVal) {
+        this.theme = val
+      },
+      immediate: true
+    },
+    theme: {
+      async handler(val) {
+        if (typeof val !== 'string') return
+        const oldVal = ORIGINAL_THEME
+        const themeCluster = this.getThemeCluster(this.defaultThemeColor.replace('#', ''))
+        const originalCluster = this.getThemeCluster(oldVal.replace('#', ''))
+        console.log(this.defaultThemeColor)
+
+        const $message = this.$message({
+          message: '  Compiling the theme',
+          customClass: 'theme-message',
+          type: 'success',
+          duration: 0,
+          iconClass: 'el-icon-loading'
+        })
+
+        const getHandler = (variable, id) => {
+          return () => {
+            const originalCluster = this.getThemeCluster(ORIGINAL_THEME.replace('#', ''))
+            const newStyle = this.updateStyle(this[variable], originalCluster, themeCluster)
+            let styleTag = document.getElementById(id)
+            if (!styleTag) {
+              styleTag = document.createElement('style')
+              styleTag.setAttribute('id', id)
+              document.head.appendChild(styleTag)
+            }
+            styleTag.innerText = newStyle
+          }
+        }
+
+        const url = `http://localhost:8081/${this.theme}.css`
+        await this.getCSSString(url, 'chalk')
+
+        const chalkHandler = getHandler('chalk', 'chalk-style')
+
+        chalkHandler()
+
+        const styles = [].slice.call(document.querySelectorAll('style'))
+          .filter(style => {
+            const text = style.innerText
+            return new RegExp(oldVal, 'i').test(text) && !/Chalk Variables/.test(text)
+          })
+        styles.forEach(style => {
+          const { innerText } = style
+          if (typeof innerText !== 'string') return
+          style.innerText = this.updateStyle(innerText, originalCluster, themeCluster)
+        })
+
+        this.$emit('change', this.theme_color)
+
+        $message.close()
+      },
       immediate: true
     }
   },
@@ -135,7 +200,6 @@ export default {
         let red = parseInt(color.slice(0, 2), 16)
         let green = parseInt(color.slice(2, 4), 16)
         let blue = parseInt(color.slice(4, 6), 16)
-
         red = Math.round((1 - shade) * red)
         green = Math.round((1 - shade) * green)
         blue = Math.round((1 - shade) * blue)

@@ -1,13 +1,12 @@
 <template>
   <div>
-    <el-cascader :props="props" :show-all-levels="showAllLevels" @change="handleSelect" />
+    <el-cascader :props="props" :show-all-levels="false" @change="handleSelect" />
   </div>
 </template>
 
 <script>
 import {getOccupationChildren} from "@/api/occupation";
 
-let id = 0
 export default {
   name: "index",
   props: {
