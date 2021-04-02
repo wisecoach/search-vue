@@ -1,15 +1,17 @@
 <template>
   <div>
     <amount-line-chart/>
+    <out-employee-table/>
   </div>
 </template>
 
 <script>
 import AmountLineChart from "@/views/charts/amount-line-chart";
+import OutEmployeeTable from '@/views/tables/out-employee-table';
 
 export default {
   name: "index",
-  components: {AmountLineChart},
+  components: {AmountLineChart, OutEmployeeTable},
   methods: {
     handleSelect(val){
       console.log(val)

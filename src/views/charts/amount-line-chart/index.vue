@@ -36,6 +36,13 @@ export default {
       handler(){
         this.setOptions()
       }
+    },
+    theme(){
+      if (this.chart) {
+        this.chart.dispose()
+      }
+      this.chart = echarts.init(this.$refs.chart, this.theme === 'theme-dark' ? 'dark' : null)
+      this.setOptions()
     }
   },
   mounted() {
@@ -51,6 +58,9 @@ export default {
     this.chart = null
   },
   computed: {
+    theme: function (){
+      return this.$store.state.settings.theme
+    },
     option:function (){
       return {
         darkMode: true,
@@ -98,7 +108,10 @@ export default {
   },
   methods: {
     initChart() {
-      this.chart = echarts.init(this.$refs.chart, this.$store.state.settings.theme === 'theme-dark' ? 'dark' : null)
+      if (this.chart) {
+        this.chart.clear()
+      }
+      this.chart = echarts.init(this.$refs.chart, this.theme === 'theme-dark' ? 'dark' : null)
       this.handleAddOccupation()
     },
     setOptions() {
