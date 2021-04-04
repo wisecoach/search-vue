@@ -65,7 +65,7 @@ export default {
         }
 
         if (!this.chalk) {
-          const url = `http://localhost:8081/theme-dark.css`
+          const url = `http://192.168.31.42:8081/theme-dark.css`
           await this.getCSSString(url, 'chalk')
         }
 
@@ -126,7 +126,7 @@ export default {
           }
         }
 
-        const url = `http://localhost:8081/${this.theme}.css`
+        const url = `http://192.168.31.42:8081/${this.theme}.css`
         await this.getCSSString(url, 'chalk')
 
         const chalkHandler = getHandler('chalk', 'chalk-style')
