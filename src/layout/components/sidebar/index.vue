@@ -5,6 +5,7 @@
       <el-menu
         :collapse="isCollapse"
         :default-active="activeMenu"
+        :active-text-color="theme_color"
         :collapse-transition="false"
         mode="vertical"
         router
@@ -30,7 +31,9 @@ export default {
   name: "sidebar",
   components: { Hamburger,Logo,SidebarItem },
   computed: {
-    ...mapState('settings'),
+    ...mapState({
+      theme_color: state => state.settings.theme_color
+    }),
     ...mapGetters(['sidebar', 'sidebarRouters']),
     activeMenu() {
       const route = this.$route;

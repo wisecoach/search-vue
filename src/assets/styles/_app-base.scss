@@ -113,27 +113,23 @@
     height: 100%;
     background: $menu-bg;
     width: 100% !important;
+
+    .el-submenu {
+      color: $menu-text;
+      background: $menu-bg;
+
+      &:hover {
+        background-image: linear-gradient(to top, rgba(0, 0, 0, 0.06), rgba(0, 0, 0, 0.06));
+      }
+    }
   }
 
   .el-menu-item{
     color: $menu-text;
     background: $menu-bg;
 
-    .svg-icon {
-      color: #E65D6E;
-    }
-
-    &:focus {
-      background: $menu-focus;
-    }
-
-    &.is-active{
-      color: $menu-active-text;
-      background-color: $el-color-primary;
-    }
-
     &:hover {
-      background-image: linear-gradient( to top, rgba(0,0,0,0.1), rgba(0,0,0,0.1));
+      background-image: linear-gradient( to top, rgba(0,0,0,0.06), rgba(0,0,0,0.06));
     }
   }
 
@@ -143,28 +139,16 @@
     white-space: nowrap !important;
   }
 
-
-  & .is-active > .el-submenu__title {
-    color: $sub-menu-active-text !important;
-  }
-
-  & .nest-menu .el-submenu>.el-submenu__title,
-  & .el-submenu .el-menu-item {
+  & .el-submenu>.el-submenu__title,
+  & .el-submenu {
     min-width: $side-bar-width !important;
+    color: $menu-text;
 
-    &:hover {
-      background-color: rgba(0, 0, 0, 0.06) !important;
+    &:hover{
+      background: rgba(0, 0, 0, .025)
     }
   }
 
-  & .nest-menu .el-submenu>.el-submenu__title,
-  & .el-submenu .el-menu-item {
-    background-color: $sub-menu-bg !important;
-
-    &:hover {
-      background-color: $sub-menu-hover !important;
-    }
-  }
 }
 
 .hide-sidebar {
@@ -273,30 +257,4 @@
     }
   }
 
-  .nest-menu .el-submenu > .el-submenu__title,
-  .el-menu-item {
-    &:hover {
-      // you can use $sub-menu-hover
-      background-color: rgba(0, 0, 0, 0.06) !important;
-    }
-  }
-
-  // the scroll bar appears when the subMenu is too long
-  > .el-menu--popup {
-    max-height: 100vh;
-    overflow-y: auto;
-
-    &::-webkit-scrollbar-track-piece {
-      background: #d3dce6;
-    }
-
-    &::-webkit-scrollbar {
-      width: 6px;
-    }
-
-    &::-webkit-scrollbar-thumb {
-      background: #99a9bf;
-      border-radius: 20px;
-    }
-  }
 }

@@ -108,9 +108,6 @@ export default {
   },
   methods: {
     initChart() {
-      if (this.chart) {
-        this.chart.clear()
-      }
       this.chart = echarts.init(this.$refs.chart, this.theme === 'theme-dark' ? 'dark' : null)
       this.handleAddOccupation()
     },

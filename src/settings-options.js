@@ -24,23 +24,59 @@ module.exports = {
               icon: "system",
               title: '首页'
             }
+          },
+          {
+            path: '/info-update/:id',
+            meta: {
+              icon: "system",
+              title: '信息修改'
+            },
+            component: 'hr/employee-manager/info-update',
           }
         ]
       },
       {
         name: 'employee',
         path: '/employee',
+        meta: {
+          title: '在职员工管理',
+          icon: 'system'
+        },
         hidden: false,
         component: 'layout',
         children: [
           {
-            name: 'employee-manage',
+            path: '/search',
+            component: 'hr/employee-manager/search',
+            meta: {
+              icon: "system",
+              title: '搜索'
+            }
+          },
+          {
             path: '',
             component: 'hr/employee-manager',
             meta: {
               icon: "system",
               title: '员工管理'
             }
+          },
+          {
+            path: '/info-update',
+            meta: {
+              icon: "system",
+              title: '信息修改'
+            },
+            component: 'hr/employee-manager/search',
+          },
+          {
+            path: '/info-update/:id',
+            hidden: true,
+            meta: {
+              icon: "system",
+              title: '信息修改'
+            },
+            component: 'hr/employee-manager/info-update',
           }
         ]
       }

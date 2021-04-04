@@ -1,13 +1,15 @@
 <template>
+  <div>
+    info-update
+  </div>
 </template>
 
 <script>
 export default {
-  name: "index"
+  name: "info-update"
 }
 </script>
 
 <style scoped>
-svg{
-}
+
 </style>

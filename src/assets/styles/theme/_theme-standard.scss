@@ -1,12 +1,3 @@
-/* element UI theme color */
-$el-color-primary: #1890ff;
-$el-color-success: #13ce66;
-$el-color-warning: #ffba00;
-$el-color-danger: #ff4949;
-$el-color-info: #1E1E1E;
-$el-color-light: #dfe4ed;
-$el-color-lighter: #e6ebf5;
-$el-border:1px solid#dfe6ec;
 
 /* custom */
 
@@ -15,13 +6,8 @@ $app-bg: #ffffff;
 $nav-bg: #eeeeee;
 
 /* sidebar 变量 */
-$menu-text:#bfcbd9;
-$menu-active-text: #ffffff;
-$sub-menu-active-text:#f4f4f5;//https://github.com/-eleme-f-e/element/issues/12951
+$menu-text: #c4c4c4;
 $menu-bg:#404040;
 $menu-hover:#263445;
 $menu-focus:#152334;
-$sidebar-title:#ffffff;
-$sub-menu-bg:#1f2d3d;
-$sub-menu-hover:#001528;
-$hamburger-fill:#bfcbd9;
+$hamburger-fill: #bfcbd9;
