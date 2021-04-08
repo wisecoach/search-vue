@@ -8,7 +8,7 @@ const user = {
   state: {
     sessionId: '',
     name: '',
-    photo: require('@/assets/images/login-background.jpg'),
+    photo: '',
     role: '',
     remeber_me: false,
     routes: [],

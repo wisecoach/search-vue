@@ -1,6 +1,8 @@
 <template>
   <div>
-    <el-cascader :props="props" :show-all-levels="false" @change="handleSelect" />
+    <el-cascader :props="props" :show-all-levels="false" @change="handleSelect">
+      <slot name="pretend"></slot>
+    </el-cascader>
   </div>
 </template>
 
@@ -44,7 +46,6 @@ export default {
       })
     },
     handleSelect(val){
-      console.log(val)
       if (val instanceof Array){
         this.$emit('select', val[val.length-1])
       }

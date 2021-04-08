@@ -65,7 +65,7 @@ export default {
         }
 
         if (!this.chalk) {
-          const url = `http://192.168.31.42:8081/theme-dark.css`
+          const url = `http://localhost:8081/theme-dark.css`
           await this.getCSSString(url, 'chalk')
         }
 
@@ -102,7 +102,6 @@ export default {
         const oldVal = ORIGINAL_THEME
         const themeCluster = this.getThemeCluster(this.defaultThemeColor.replace('#', ''))
         const originalCluster = this.getThemeCluster(oldVal.replace('#', ''))
-        console.log(this.defaultThemeColor)
 
         const $message = this.$message({
           message: '  Compiling the theme',
@@ -126,7 +125,7 @@ export default {
           }
         }
 
-        const url = `http://192.168.31.42:8081/${this.theme}.css`
+        const url = `http://localhost:8081/${this.theme}.css`
         await this.getCSSString(url, 'chalk')
 
         const chalkHandler = getHandler('chalk', 'chalk-style')

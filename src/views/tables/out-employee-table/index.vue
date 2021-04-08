@@ -1,6 +1,7 @@
 <template>
   <el-table
     :data="tableData"
+    v-loading="loading"
     border
     style="width: 100%">
     <el-table-column
@@ -75,29 +76,26 @@
     </el-table-column>
   </el-table>
 </template>
-
+// deprecated
 <script>
 import {getEmployeeList} from '@/api/employee'
 import {formatBirth, formatDegree} from '@/utils/info-format'
 
 export default {
   name: "out-employee-table",
-  data() {
-    return {
-      tableData: []
+  props: {
+    tableData: {
+      type: Array,
+      default: function () {
+        return []
+      }
+    },
+    loading: {
+      type: Boolean,
+      default: true
     }
   },
   methods: {
-    getData(){
-      getEmployeeList().then(res=>{
-        if (res.data.code === 100){
-          let data = res.data.data
-          for (let item of data){
-            this.tableData.push(item)
-          }
-        }
-      })
-    },
     handleRoute(path) {
       console.log(path)
       // this.$router.push({path: path})
@@ -111,9 +109,6 @@ export default {
     },
     formatBirth,formatDegree
   },
-  mounted() {
-    this.getData()
-  }
 }
 </script>
 

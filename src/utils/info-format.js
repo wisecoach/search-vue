@@ -12,6 +12,8 @@ export function formatDegree(degree){
     5: '本科',
     6: '研究生',
     7: '博士生'
+
+
   }
   return d[degree] || '未知'
 }
