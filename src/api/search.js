@@ -7,7 +7,7 @@ export function searchAllDepartment(){
   })
 }
 
-export function searchDropEmployer(id){
+export function searchDropEmployee(id){
   return request({
     url: '/search/drop' + id,
     method: 'post'
@@ -21,10 +21,11 @@ export function searchHr(id){
   })
 }
 
-export function searchInnerEmployer(id){
+export function searchInnerEmployee(searchInfo){
   return request({
-    url: '/search/inner' + id,
-    method: 'post'
+    url: '/search/inner',
+    method: 'post',
+    data: searchInfo
   })
 }
 

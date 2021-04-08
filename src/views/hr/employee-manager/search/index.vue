@@ -1,58 +1,93 @@
 <template>
   <div>
-    <employee-search @search="handleSearch"/>
+    <el-card>
+      <employee-inner-search @search="handleSearch"/>
+    </el-card>
     <el-card class="container">
-      <out-employee-table :table-data="tableData" :loading="loading"></out-employee-table>
-      <el-pagination
-        @current-change="handlePageChange"
-        :current-page.sync="page"
-        :page-size="20"
-        layout="total, prev, pager, next, jumper"
-        :total="1000">
-      </el-pagination>
+      <employee-inner-table :table-data="tableData" :loading="loading"></employee-inner-table>
+      <div class="pager">
+        <el-pagination
+          @current-change="handlePageChange"
+          :current-page.sync="page"
+          :page-size="pageSize"
+          layout="total, prev, pager, next, jumper"
+          :total="1000">
+        </el-pagination>
+      </div>
     </el-card>
   </div>
 </template>
 
 <script>
-import {getEmployeeList} from '@/api/employee'
+import {searchInnerEmployee} from "@/api/search";
 import {formatBirth, formatDegree} from '@/utils/info-format'
 import DepartmentPicker from "@/components/department-picker";
-import OutEmployeeTable from "@/views/tables/out-employee-table";
-import EmployeeSearch from "@/views/search/employee-search";
+import EmployeeInnerTable from "@/views/components/tables/employee-inner-table";
+import EmployeeInnerSearch from "@/views/components/search/employee-inner-search";
 
 export default {
   name: "search",
-  components: {EmployeeSearch, OutEmployeeTable, DepartmentPicker},
+  components: {EmployeeInnerSearch, EmployeeInnerTable, DepartmentPicker},
   data() {
     return {
       tableData: [],
-      size: 5,
+      pageSize: 20,
       page: 0,
       loading: true,
+      key: {
+        type: 'NAME',
+        value: ''
+      },
+      filters: [],
+    }
+  },
+  computed: {
+    searchInfo() {
+      return {
+        key: this.key,
+        filters: this.filters,
+        page: this.page,
+        pageSize: this.pageSize
+      }
     }
   },
   methods: {
-    getDataPage(page){
+    search(){
+      if (!this.validateSearchInfo()) {
+        return
+      }
       this.loading = true
-      getEmployeeList().then(res=>{
+      console.log("sss")
+      searchInnerEmployee(this.searchInfo).then(res=>{
         if (res.data.code === 100){
           let data = res.data.data
+          let listdata = data.list
           this.tableData = []
-          for (let item of data){
+          for (let item of listdata){
             this.tableData.push(item)
           }
           this.loading = false
         }
       })
     },
-    handlePageChange(val){
-      this.getDataPage(val)
+    validateSearchInfo(){
+      let key = this.searchInfo.key;
+      if (key.type == null || key.type === ""){
+        this.$message.error("请选择搜索关键词的类型")
+        return false
+      }
+      return true
     },
-    handleSearch(){
+    handlePageChange(val){
+      this.page = val
+      this.search()
+    },
+    handleSearch(val){
       this.tableData = []
       this.page = 0
-      this.getDataPage(0)
+      this.key = val.key
+      this.filters = val.filters
+      this.search()
     },
     handleRoute(path) {
       console.log(path)
@@ -64,14 +99,15 @@ export default {
     formatBirth,formatDegree
   },
   mounted() {
-    this.getDataPage(0)
+    this.search()
   }
 }
 </script>
 
-<style scoped>
-.el-pagination{
-  position: relative;
-  right: 0;
+<style lang="scss" scoped>
+.pager {
+  padding: 30px 20px;
+  text-align: right;
 }
+
 </style>

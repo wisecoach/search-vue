@@ -1,35 +1,33 @@
 <template>
   <div>
-    <el-card>
-      <el-input v-model="key.value" placeholder="请输入搜索关键词">
-        <el-select v-model="key.type" slot="prepend" placeholder="关键词类型">
-          <el-option v-for="option in options.key_type" :label="option.label" :value="option.value">
-          </el-option>
-        </el-select>
-        <el-button slot="append" icon="el-icon-search" @click="handleSearch"></el-button>
-      </el-input>
-      <el-collapse @change="handleCollapse">
-        <el-collapse-item>
-          <template slot="title">{{collapseTitle}}</template>
-        <search-filter
-          v-for="(filter, key) in filter_map"
-          :key="key"
-          @close="handleRemoveFilter"
-          :filter-data="filter[1]"/>
-        <el-select v-if="selecting" v-model="new_filter_index" @change="handleNewFilterSelect" placeholder="过滤器类型">
-          <el-option
-            v-for="(option, index) in options.filter_type"
-            :label="option.label"
-            :value="index"
-            :disabled="filters.get(option.value)!=null"/>
-        </el-select>
-        <div v-else>
-          <el-button @click="handleNewFilterClick">新增过滤器</el-button>
-          <el-button @click="handleClearFilter">清空过滤器</el-button>
-        </div>
-        </el-collapse-item>
-      </el-collapse>
-    </el-card>
+    <el-input v-model="key.value" placeholder="请输入搜索关键词">
+      <el-select v-model="key.type" slot="prepend" placeholder="关键词类型">
+        <el-option v-for="option in options.key_type" :label="option.label" :value="option.value">
+        </el-option>
+      </el-select>
+      <el-button slot="append" icon="el-icon-search" @click="handleSearch"></el-button>
+    </el-input>
+    <el-collapse @change="handleCollapse">
+      <el-collapse-item>
+        <template slot="title">{{collapseTitle}}</template>
+      <search-filter
+        v-for="(filter, key) in filter_map"
+        :key="key"
+        @close="handleRemoveFilter"
+        :filter-data="filter[1]"/>
+      <el-select v-if="selecting" v-model="new_filter_index" @change="handleNewFilterSelect" placeholder="过滤器类型">
+        <el-option
+          v-for="(option, index) in options.filter_type"
+          :label="option.label"
+          :value="index"
+          :disabled="filters.get(option.value)!=null"/>
+      </el-select>
+      <div v-else style="padding-top: 20px">
+        <el-button @click="handleNewFilterClick">新增过滤器</el-button>
+        <el-button @click="handleClearFilter">清空过滤器</el-button>
+      </div>
+      </el-collapse-item>
+    </el-collapse>
   </div>
 </template>
 
@@ -38,14 +36,14 @@ import {search_employee_options} from '@/settings-options'
 import SearchFilter from "./search-filter";
 
 export default {
-  name: "employee-search",
+  name: "employee-inner-search",
   components: {SearchFilter},
   data() {
     return {
       use_filter: false,
       key: {
         value: '',
-        type: '',
+        type: 'NAME',
       },
       selecting: false,
       new_filter_index: null,
@@ -77,7 +75,12 @@ export default {
     },
     search_params(){
       const params = {
-        filters: this.filters,
+        filters: Array.from(this.filters.values()).map(item => {
+          return {
+            type: item.type,
+            value: item.value
+          }
+        }),
         key: this.key
       }
       return params

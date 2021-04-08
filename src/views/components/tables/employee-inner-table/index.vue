@@ -12,9 +12,16 @@
           <p>姓名: {{ scope.row.name }}</p>
           <p>住址: {{ scope.row.address }}</p>
           <div slot="reference" class="name-wrapper">
-            <el-tag size="medium">{{ scope.row.name }}</el-tag>
+            {{ scope.row.name }}
           </div>
         </el-popover>
+      </template>
+    </el-table-column>
+    <el-table-column
+      label="部门"
+      width="150">
+      <template slot-scope="scope">
+        {{scope.row.department}}
       </template>
     </el-table-column>
     <el-table-column
@@ -43,6 +50,20 @@
       width="150">
       <template slot-scope="scope">
         {{formatDegree(scope.row.degree)}}
+      </template>
+    </el-table-column>
+    <el-table-column
+      label="Tel"
+      width="150">
+      <template slot-scope="scope">
+        {{scope.row.tel}}
+      </template>
+    </el-table-column>
+    <el-table-column
+      label="Email"
+      width="150">
+      <template slot-scope="scope">
+        {{scope.row.mail}}
       </template>
     </el-table-column>
     <el-table-column
@@ -82,7 +103,7 @@ import {getEmployeeList} from '@/api/employee'
 import {formatBirth, formatDegree} from '@/utils/info-format'
 
 export default {
-  name: "out-employee-table",
+  name: "employee-inner-table",
   props: {
     tableData: {
       type: Array,

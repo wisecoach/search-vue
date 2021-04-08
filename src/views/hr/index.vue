@@ -6,8 +6,8 @@
 </template>
 
 <script>
-import AmountLineChart from "@/views/charts/amount-line-chart";
-import OutEmployeeTable from '@/views/tables/out-employee-table';
+import AmountLineChart from "@/views/components/charts/amount-line-chart";
+import OutEmployeeTable from '@/views/components/tables/employee-inner-table';
 
 export default {
   name: "index",

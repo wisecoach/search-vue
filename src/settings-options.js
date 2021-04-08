@@ -65,6 +65,23 @@ module.exports = {
             path: 'info-update',
             meta: {
               icon: "system",
+              title: '详细信息'
+            },
+            component: 'hr/employee-manager/search',
+          },
+          {
+            path: 'info-update/:id',
+            hidden: true,
+            meta: {
+              icon: "system",
+              title: '详细信息'
+            },
+            component: 'hr/employee-manager/info-update',
+          },
+          {
+            path: 'info-update',
+            meta: {
+              icon: "system",
               title: '信息修改'
             },
             component: 'hr/employee-manager/search',
