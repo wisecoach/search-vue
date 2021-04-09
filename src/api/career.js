@@ -95,7 +95,7 @@ export function detailedComment(){
 
 export function searchAllCareerbyEmpid(empid){
   return request({
-    url: '/career/' + {empid},
-    method: 'get '
+    url: '/career/' + empid,
+    method: 'get'
   })
 }

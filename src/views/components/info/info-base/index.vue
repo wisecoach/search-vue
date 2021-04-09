@@ -4,10 +4,10 @@
 
 <script>
 export default {
-  name: "base",
+  name: "info-base",
   props: {
-    id: {
-      type: Number,
+    employee: {
+      type: Object,
       default: null
     }
   }

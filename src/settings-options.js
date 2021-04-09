@@ -62,7 +62,7 @@ module.exports = {
             }
           },
           {
-            path: 'info-update',
+            path: 'detail',
             meta: {
               icon: "system",
               title: '详细信息'
@@ -70,13 +70,13 @@ module.exports = {
             component: 'hr/employee-manager/search',
           },
           {
-            path: 'info-update/:id',
+            path: 'detail/:id',
             hidden: true,
             meta: {
               icon: "system",
               title: '详细信息'
             },
-            component: 'hr/employee-manager/info-update',
+            component: 'hr/employee-manager/detail',
           },
           {
             path: 'info-update',

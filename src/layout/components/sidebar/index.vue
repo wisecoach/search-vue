@@ -35,10 +35,18 @@ export default {
       theme_color: state => state.settings.theme_color
     }),
     ...mapGetters(['sidebar', 'sidebarRouters']),
-    activeMenu() {
+    activeMenu: function () {
       const route = this.$route;
-      const { meta, path } = route;
-      return path;
+      let {meta, path} = route;
+      const splits = path.split("/")
+      let newSplits = []
+      for (let split of splits) {
+        if (isNaN(Number(split)) && split !== "") {
+          newSplits.push(split)
+        }
+      }
+      const newPath = "/" + newSplits.join("/")
+      return newPath;
     },
     isCollapse(){
       return !this.sidebar.opened
