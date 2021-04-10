@@ -1,14 +1,16 @@
 <template>
   <div class="sidebar-logo-container" :class="{'collapse':collapse}">
     <transition name="sidebarLogoFade">
-      <router-link v-if="collapse" key="collapse" class="sidebar-logo-link" to="/">
+      <div v-if="collapse" class="sidebar-logo-link">
         <hamburger class="hamburger-container" :is-active="collapse" @toggleClick="toggleClick"/>
-      </router-link>
-      <router-link v-else key="expand" class="sidebar-logo-link" to="/">
-        <i class="iconfont logo">&#xe645;</i>
-        <div class="logo-title">{{title}}</div>
+      </div>
+      <div v-else class="sidebar-logo-link">
+        <router-link to="/" style="display: inline-block;width: 120px">
+          <i class="iconfont logo">&#xe645;</i>
+          <div class="logo-title">{{title}}</div>
+        </router-link>
         <hamburger class="hamburger-container" :is-active="collapse" @toggleClick="toggleClick"/>
-      </router-link>
+      </div>
     </transition>
   </div>
 </template>
@@ -69,18 +71,21 @@ export default {
   text-align: center;
   overflow: hidden;
 
-  .logo {
-    font-size: 20px;
-    margin-right: 10px;
-  }
-
-  .logo-title {
-    font-size: 16px;
-    display: inline-block;
-  }
 
   &.collapse {
 
   }
 }
+
+
+.logo {
+  font-size: 20px;
+  margin-right: 10px;
+}
+
+.logo-title {
+  font-size: 16px;
+  display: inline-block;
+}
+
 </style>

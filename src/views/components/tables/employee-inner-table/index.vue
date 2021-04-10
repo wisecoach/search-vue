@@ -74,7 +74,7 @@
       <template slot-scope="scope">
         <el-button
           size="mini"
-          @click="handleRoute('/detail/' + scope.row.id)">查看详细信息</el-button>
+          @click="handleRoute('/employee/detail/' + scope.row.id)">查看详细信息</el-button>
         <el-button
           size="mini"
           type="danger"
@@ -87,17 +87,12 @@
             ></el-button>
           <el-dropdown-menu slot="dropdown">
             <el-dropdown-item :command="'/info-update/'+scope.row.id">信息修改</el-dropdown-item>
-            <el-dropdown-item>狮子头</el-dropdown-item>
-            <el-dropdown-item>螺蛳粉</el-dropdown-item>
-            <el-dropdown-item>双皮奶</el-dropdown-item>
-            <el-dropdown-item>蚵仔煎</el-dropdown-item>
           </el-dropdown-menu>
         </el-dropdown>
       </template>
     </el-table-column>
   </el-table>
 </template>
-// deprecated
 <script>
 import {getEmployeeList} from '@/api/employee'
 import {formatBirth, formatDegree} from '@/utils/info-format'
@@ -119,13 +114,12 @@ export default {
   methods: {
     handleRoute(path) {
       console.log(path)
-      // this.$router.push({path: path})
+      this.$router.push({path: path})
     },
     handleDelete(index, row) {
       console.log(index, row);
     },
     handleCommand(val){
-      console.log(val)
       this.$router.push({path: val})
     },
     formatBirth,formatDegree
