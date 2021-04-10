@@ -5,6 +5,10 @@
 
 // cover some element-ui styles
 
+.el-rate__icon,.el-rate__text {
+  font-size: 100px;
+}
+
 .el-breadcrumb__inner,
 .el-breadcrumb__inner a {
   font-weight: 400 !important;

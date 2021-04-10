@@ -4,6 +4,11 @@ module.exports = {
     light: 'theme-light',
     dark: 'theme-dark'
   },
+  chart_theme_options: {
+    'theme-standard': 'macarons2',
+    'theme-light': 'macarons2',
+    'theme-dark': 'dark',
+  },
   role_routes: {
     'hr': [
       {

@@ -11,7 +11,7 @@
 
 <script>
 import echarts from 'echarts'
-require('echarts/theme/macarons') // echarts theme
+import {chart_theme_options} from '@/settings-options'
 import {getAmount} from '@/api/chart'
 import {formDateBeforeList} from '@/utils/date'
 import OccupationPicker from '@/components/occupation-picker'
@@ -41,7 +41,7 @@ export default {
       if (this.chart) {
         this.chart.dispose()
       }
-      this.chart = echarts.init(this.$refs.chart, this.theme === 'theme-dark' ? 'dark' : null)
+      this.chart = echarts.init(this.$refs.chart, chart_theme_options[this.theme])
       this.setOptions()
     }
   },
@@ -63,7 +63,6 @@ export default {
     },
     option:function (){
       return {
-        darkMode: true,
         title: {
           text: '在职人数折线图',
           y: 'bottom',
@@ -108,7 +107,7 @@ export default {
   },
   methods: {
     initChart() {
-      this.chart = echarts.init(this.$refs.chart, this.theme === 'theme-dark' ? 'dark' : null)
+      this.chart = echarts.init(this.$refs.chart, this.theme === 'theme-dark' ? 'dark' : 'macarons2')
       this.handleAddOccupation()
     },
     setOptions() {
