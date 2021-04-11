@@ -18,7 +18,7 @@
           <span>工作结束时间：{{formatDate(career.etime, "yyyy年MM月dd日")}}</span>
           <span>考勤：{{career.attendance.toFixed(2)}}%</span>
           <span>业绩：{{career.performance.toFixed(2)}}%</span>
-          <a :href="'/employee/detail/career/'+career.id">查看详情 <i class="el-icon-arrow-right"/> </a>
+          <router-link :to="'/employee/detail/career/'+career.id">查看详情 <i class="el-icon-arrow-right"/> </router-link>
         </div>
       </el-collapse-item>
     </el-collapse>

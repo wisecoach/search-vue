@@ -14,7 +14,6 @@ export default {
   components: {AmountLineChart, OutEmployeeTable},
   methods: {
     handleSelect(val){
-      console.log(val)
     }
   }
 }

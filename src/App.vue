@@ -33,4 +33,17 @@ export default {
 </script>
 
 <style lang="scss">
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+//滚动条的滑块
+::-webkit-scrollbar-thumb {
+  background-color: #a1a3a9;
+  border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: #919399;
+  border-radius: 5px;
+}
 </style>

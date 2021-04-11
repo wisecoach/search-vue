@@ -59,20 +59,39 @@ module.exports = {
             }
           },
           {
-            path: '',
-            component: 'hr/employee-manager',
-            meta: {
-              icon: "system",
-              title: '员工管理'
-            }
-          },
-          {
             path: 'detail',
             meta: {
               icon: "system",
               title: '详细信息'
             },
-            component: 'hr/employee-manager/search',
+            component: 'view',
+            children: [
+              {
+                path: '',
+                meta: {
+                  icon: "system",
+                  title: '全部信息'
+                },
+                component: 'hr/employee-manager/search',
+              },
+              {
+                path: 'career',
+                meta: {
+                  icon: "system",
+                  title: '经历信息'
+                },
+                component: 'hr/employee-manager/search',
+              },
+              {
+                path: 'career/:id',
+                hidden: true,
+                meta: {
+                  icon: "system",
+                  title: '经历信息'
+                },
+                component: 'hr/employee-manager/career',
+              },
+            ]
           },
           {
             path: 'detail/:id',

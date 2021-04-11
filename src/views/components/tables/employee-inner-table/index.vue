@@ -3,7 +3,9 @@
     :data="tableData"
     v-loading="loading"
     border
+    height="780px"
     style="width: 100%">
+    <el-scrollbar style="height: 100%">
     <el-table-column
       label="姓名"
       width="150">
@@ -91,6 +93,7 @@
         </el-dropdown>
       </template>
     </el-table-column>
+    </el-scrollbar>
   </el-table>
 </template>
 <script>

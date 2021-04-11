@@ -26,6 +26,7 @@
 <script>
 import path from 'path'
 import { isExternal } from '@/utils/validate'
+import {removeId} from "@/utils/route";
 import Item from './Item'
 import AppLink from './Link'
 import FixiOSBug from './FixiOSBug'
@@ -87,7 +88,7 @@ export default {
       if (isExternal(this.basePath)) {
         return this.basePath
       }
-      return path.resolve(this.basePath, routePath)
+      return removeId(path.resolve(this.basePath, routePath))
     }
   }
 }

@@ -26,6 +26,7 @@ import {mapState, mapGetters} from 'vuex'
 import Hamburger from '@/components/hamburger'
 import Logo from './Logo'
 import SidebarItem from "./SidebarItem";
+import {removeId} from "@/utils/route";
 
 export default {
   name: "sidebar",
@@ -38,15 +39,7 @@ export default {
     activeMenu: function () {
       const route = this.$route;
       let {meta, path} = route;
-      const splits = path.split("/")
-      let newSplits = []
-      for (let split of splits) {
-        if (isNaN(Number(split)) && split !== "") {
-          newSplits.push(split)
-        }
-      }
-      const newPath = "/" + newSplits.join("/")
-      return newPath;
+      return removeId(path);
     },
     isCollapse(){
       return !this.sidebar.opened
