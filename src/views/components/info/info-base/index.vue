@@ -160,6 +160,8 @@ export default {
 
 .box-card {
   width: 100%;
+  height: 430px;
+  margin-bottom: 20px;
 }
 
 .name-role {

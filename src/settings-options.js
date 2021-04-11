@@ -64,7 +64,7 @@ module.exports = {
               icon: "system",
               title: '详细信息'
             },
-            component: 'view',
+            component: 'parent-view',
             children: [
               {
                 path: '',
@@ -82,15 +82,6 @@ module.exports = {
                 },
                 component: 'hr/employee-manager/search',
               },
-              {
-                path: 'career/:id',
-                hidden: true,
-                meta: {
-                  icon: "system",
-                  title: '经历信息'
-                },
-                component: 'hr/employee-manager/career',
-              },
             ]
           },
           {
@@ -100,7 +91,27 @@ module.exports = {
               icon: "system",
               title: '详细信息'
             },
-            component: 'hr/employee-manager/detail',
+            component: 'parent-view',
+            children: [
+              {
+                path: '',
+                hidden: true,
+                meta: {
+                  icon: "system",
+                  title: '详细信息'
+                },
+                component: 'hr/employee-manager/detail'
+              },
+              {
+                path: 'career/:carid',
+                hidden: true,
+                meta: {
+                  icon: "system",
+                  title: '经历信息'
+                },
+                component: 'hr/employee-manager/career',
+              },
+            ]
           },
           {
             path: 'info-update',

@@ -1,21 +1,62 @@
 <template>
   <div>
-
+    <el-card>
+      <template slot="header">
+        员工评价
+      </template>
+      <comments :id="id"/>
+    </el-card>
+    <el-card>
+      <template slot="header">
+        基本信息
+      </template>
+      <career-detail :career="employeeCareer" />
+    </el-card>
+    <el-card>
+      <template slot="header">
+        总体评分
+      </template>
+      <score-rate :score="avgScore"/>
+      <ap-rate :score="apScore"/>
+    </el-card>
+    <el-card>
+      <template slot="header">
+        违例记录
+      </template>
+      <crimes :crimes="crimes" />
+    </el-card>
   </div>
 </template>
 
 <script>
-import {} from '@/api/career'
+
+import {
+  searchCareerbyCarid,
+  searchThisCrimebycarid,
+  searchThisPerformancebyCarid,
+  searchAttendancebyCarId,
+  searchThisAvgbyCarid,
+} from '@/api/career'
+import {searchInfobyId} from '@/api/info'
+import CareerDetail from "@/views/components/info/career-detail";
+import ScoreRate from "@/views/components/info/score-rate";
+import ApRate from "@/views/components/info/ap-rate";
+import Crimes from "@/views/components/info/crimes";
+import Comments from "@/views/components/info/comments";
 
 export default {
   name: "career",
+  components: {Crimes, ApRate, ScoreRate, CareerDetail, Comments},
   data(){
     return {
+      id: null,
+      empid: null,
+      employee: null,
       career: null,
       attendances: [],
       performances: [],
       crimes: [],
-
+      avgScore: null,
     }
   },
   computed: {
@@ -24,31 +65,98 @@ export default {
       let performanceList = []
       let avgAttendance = 0
       let avgPerformance = 0
-      this.careers.map((item) => {
+      this.attendances.map((item) => {
         attendanceList.push(item.attendance)
         avgAttendance += item.attendance
+      })
+      this.performances.map((item) => {
         performanceList.push(item.performance)
         avgPerformance += item.performance
       })
-      avgAttendance /= this.careers.length * 20
-      avgPerformance /= this.careers.length * 20
+      avgAttendance /= this.attendances.length * 20
+      avgPerformance /= this.performances.length * 20
       return {
         attendances: attendanceList,
         performances: performanceList,
         avgAttendance: avgAttendance,
         avgPerformance: avgPerformance
       }
+    },
+    employeeCareer(){
+      if (this.employee && this.career){
+        const career = {
+          ...this.career,
+          employee: this.employee
+        }
+        console.log(career)
+        return career
+      }
     }
   },
   methods: {
     init(){
-
+      this.id = this.$route.params.carid
+      this.empid = this.$route.params.id
+      this.getCareer()
+      this.getEmployee()
+      this.getAvgScore()
+      this.getAttendace()
+      this.getPerformance()
+      this.getCrimes()
     },
-
+    getCareer(){
+      searchCareerbyCarid(this.id).then(res=>{
+        if(res.data.code === 100){
+          this.career = res.data.data
+        }
+      })
+    },
+    getEmployee(){
+      searchInfobyId(this.empid).then(res=>{
+        if(res.data.code === 100){
+          this.employee = res.data.data
+        }
+      })
+    },
+    getAvgScore() {
+      searchThisAvgbyCarid(this.id).then(res=>{
+        if(res.data.code === 100){
+          this.avgScore = res.data.data
+          this.avgScore.ability /= 20
+          this.avgScore.attitude /= 20
+        }
+      })
+    },
+    getPerformance(){
+      searchThisPerformancebyCarid(this.id).then(res=>{
+        if(res.data.code === 100){
+          this.performances = res.data.data
+        }
+      })
+    },
+    getAttendace(){
+      searchAttendancebyCarId(this.id).then(res=>{
+        if(res.data.code === 100){
+          this.attendances = res.data.data
+        }
+      })
+    },
+    getCrimes() {
+      searchThisCrimebycarid(this.id).then(res=>{
+        if(res.data.code === 100){
+          this.crimes = res.data.data
+        }
+      })
+    }
+  },
+  mounted() {
+    this.init()
   }
 }
 </script>
 
-<style scoped>
-
+<style lang="scss" scoped>
+.el-card {
+  margin-bottom: 20px;
+}
 </style>

@@ -79,10 +79,11 @@ export function employerQuit(empid){
   })
 }
 
-export function searchCommentbyCaridPageSize(carid, page, pagesize){
+export function searchCommentbyCaridPageSize(carid, page, pageSize){
   return request({
     url: '/career/score',
-    method: 'get'
+    method: 'get',
+    params: {carid, page, pageSize}
   })
 }
 
