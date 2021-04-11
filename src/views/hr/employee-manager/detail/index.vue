@@ -1,6 +1,9 @@
 <template>
   <div>
     <el-card>
+      <template shot="header">
+        详细信息
+      </template>
       <info-base :employee="employee" />
     </el-card>
     <el-card>
