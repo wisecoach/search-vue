@@ -80,8 +80,8 @@ export default {
   height: $navbar-height;
   overflow: hidden;
   position: relative;
-  -webkit-box-shadow: 0px 1px 2px 0px #cdcdcd;
-  box-shadow: 0px 1px 2px 0px #cdcdcd;
+  -webkit-box-shadow: 0px 1px 2px 0px #A0A0A0;
+  box-shadow: 0px 1px 2px 0px #A0A0A0;
 
 
   .breadcrumb-container {

@@ -1,6 +1,10 @@
 <template>
   <div class="app-main">
-    <router-view />
+    <transition name="fade-transform" mode="out-in">
+      <keep-alive :include="cachedViews">
+        <router-view />
+      </keep-alive>
+    </transition>
   </div>
 </template>
 
@@ -11,7 +15,6 @@ export default {
   name: "index",
   data(){
     return {
-      ret: ''
     }
   },
   methods: {
@@ -19,6 +22,11 @@ export default {
       mocktest().then(res=>{
         this.ret = res.data
       })
+    }
+  },
+  computed: {
+    cachedViews(){
+      return this.$store.state.tags.cached_views
     }
   }
 }

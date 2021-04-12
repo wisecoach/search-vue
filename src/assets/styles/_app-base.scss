@@ -7,8 +7,6 @@
 
   .header-container {
     background: $nav-bg;
-    -webkit-box-shadow: 0 2px 6px rgba(0,21,41,.35);
-    box-shadow: 0 2px 6px rgba(0,21,41,.35);
 
     &.fixed-header{
       position: fixed;
@@ -22,8 +20,8 @@
 
   .app-container{
     background: $app-bg;
-    -webkit-box-shadow: 0px -1px 0px 0px black;
-    box-shadow: 0px -1px 0px 0px black;
+    -webkit-box-shadow: 0px -1px 0px 0px #555555;
+    box-shadow: 0px -1px 0px 0px #555555;
   }
 
   .fixed-header + .app-container {

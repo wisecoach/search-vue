@@ -46,7 +46,7 @@
               <span>基本资料</span>
             </div>
             <div>
-              <el-form label-width="80px" v-model="dataFrom" size="small" label-position="right">
+              <el-form label-width="80px" v-model="dataForm" size="small" label-position="right">
                 <div class="personal-relation">
                   <div class="relation-item">性别:  <div style="float: right; padding-right:20px;">{{employee.gender}}</div></div>
                 </div>
@@ -84,39 +84,41 @@
 
 <script>
 export default {
-  name: "base",
+  name: "info-base",
   props: {
     employee: {
       type: Object,
-      default: {
-        "id": 0,
-        "ctime": null,
-        "name": "NAME:0page1",
-        "birth": "2021-04-08T09:00:47.704+00:00",
-        "gender": 0,
-        "seniority": null,
-        "degree": 1,
-        "school": null,
-        "entid": null,
-        "depid": null,
-        "major": null,
-        "tel": "17333072508",
-        "hired": true,
-        "photo": "",
-        "address": "你猜我家在哪",
-        "mail": "17333072508@qq.com",
-        "resume": "",
-        "enterprise": "果蔬文化有限公司",
-        "department": "技术部",
-        "hr": {
-          "id": null,
+      default: function () {
+        return{
+          "id": 0,
           "ctime": null,
-          "username": null,
-          "enterprise": null,
-          "name": null,
-          "photo": null
+          "name": "NAME:0page1",
+          "birth": "2021-04-08T09:00:47.704+00:00",
+          "gender": 0,
+          "seniority": null,
+          "degree": 1,
+          "school": null,
+          "entid": null,
+          "depid": null,
+          "major": null,
+          "tel": "17333072508",
+          "hired": true,
+          "photo": "",
+          "address": "你猜我家在哪",
+          "mail": "17333072508@qq.com",
+          "resume": "",
+          "enterprise": "果蔬文化有限公司",
+          "department": "技术部",
+          "hr": {
+          "id": null,
+            "ctime": null,
+            "username": null,
+            "enterprise": null,
+            "name": null,
+            "photo": null
         },
-        "innid": "0"
+          "innid": "0"
+        }
       }
     }
   },

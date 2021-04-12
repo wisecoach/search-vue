@@ -2,12 +2,6 @@
   <div>
     <el-card>
       <template slot="header">
-        员工评价
-      </template>
-      <comments :id="id"/>
-    </el-card>
-    <el-card>
-      <template slot="header">
         基本信息
       </template>
       <career-detail :career="employeeCareer" />
@@ -24,6 +18,12 @@
         违例记录
       </template>
       <crimes :crimes="crimes" />
+    </el-card>
+    <el-card>
+      <template slot="header">
+        员工评价
+      </template>
+      <comments :id="id"/>
     </el-card>
   </div>
 </template>
@@ -95,7 +95,7 @@ export default {
   },
   methods: {
     init(){
-      this.id = this.$route.params.carid
+      this.id = Number(this.$route.params.carid)
       this.empid = this.$route.params.id
       this.getCareer()
       this.getEmployee()

@@ -15,6 +15,8 @@ export default {
   methods: {
     handleSelect(val){
     }
+  },
+  mounted() {
   }
 }
 </script>
