@@ -7,11 +7,11 @@ import Layout from '@/layout'
 import HR from '@/views/hr'
 
 export const constantRoutes = [
-  // {
-  //   path: '',
-  //   component: Layout,
-  // }
-
+  {
+    path: '/login',
+    component: (resolve) => require(['@/views/login'], resolve),
+    hidden: true
+  },
 ]
 
 export default new Router({

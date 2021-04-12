@@ -9,10 +9,9 @@ export function getInfo(){
 }
 
 export function login(username, password, code, uuid){
-  const encrypt_pwd = encrypt(password)
   const data = {
     username,
-    password: encrypt_pwd,
+    password,
     code,
     uuid
   }

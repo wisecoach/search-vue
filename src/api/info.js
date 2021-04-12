@@ -22,23 +22,23 @@ export function searchInfobyId(id){
   })
 }
 
-export function searchEnterpriseInfo(){
+export function enterpriseInfo(){
   return request({
     url: '/info/enterprise',
     method: 'get'
   })
 }
 
-export function hrSearchHrInfo(id){
+export function hrInfo(){
   return request({
-    url: '/info/hr/' + id,
+    url: '/info/hr',
     method: 'get'
   })
 }
 
-export function managerSearchManagerInfo(id){
+export function managerInfo(){
   return request({
-    url: '/info/manager/' + id,
+    url: '/info/manager',
     method: 'get'
   })
 }

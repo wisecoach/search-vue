@@ -1,5 +1,17 @@
 import request from "@/utils/request"
 
+export function login(form){
+  let data = {
+    username: form.username,
+    password: form.password
+  }
+  return request({
+    url: '/login',
+    method: 'post',
+    data
+  })
+}
+
 export function getCode(){
   return request({
     url: '/user/code',
@@ -39,9 +51,9 @@ export function changeMangerAccount(id, password){
   })
 }
 
-export function getUserInfobySessionId(sessionid){
+export function getUserInfobySessionId(){
   return request({
-    url: '/user/myInfo' + sessionid,
+    url: '/user/myInfo',
     method: 'get'
   })
 }

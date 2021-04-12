@@ -14,6 +14,7 @@ const service = axios.create({
 // request拦截器
 service.interceptors.request.use(config => {
   // get请求映射params参数
+  config.withCredentials = true;
   if (config.method === 'get' && config.params) {
     let url = config.url + '?';
     for (const propName of Object.keys(config.params)) {

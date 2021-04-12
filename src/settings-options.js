@@ -151,5 +151,11 @@ module.exports = {
       {value: 'BIRTH', label: '年龄'},
       {value: 'DEGREE', label: '学历'},
     ]
+  },
+  role_name_mapper: {
+    "ROLE_HR": "hr",
+    "ROLE_MANAGER": "manager",
+    "ROLE_ENTERPRISE": "enterprise",
+    "ROLE_ANONYMOUS": null
   }
 }
