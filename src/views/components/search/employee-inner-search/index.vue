@@ -63,10 +63,6 @@ export default {
       list.push(this.handleOccupation)
       list.push(this.handleOccupation)
       list.push(this.handleOccupation)
-      list.push(this.handleOccupation)
-      list.push(this.handleOccupation)
-      list.push(this.handleOccupation)
-      list.push(this.handleOccupation)
       return list
     },
     filter_map(){

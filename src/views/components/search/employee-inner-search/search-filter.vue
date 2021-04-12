@@ -7,25 +7,13 @@
       2
     </div>
     <div v-else-if="type === filter_options[2].value">
-
+      3
     </div>
     <div v-else-if="type === filter_options[3].value">
-
+      4
     </div>
     <div v-else-if="type === filter_options[4].value">
-
-    </div>
-    <div v-else-if="type === filter_options[5].value">
-
-    </div>
-    <div v-else-if="type === filter_options[6].value">
-
-    </div>
-    <div v-else-if="type === filter_options[7].value">
-
-    </div>
-    <div v-else-if="type === filter_options[8].value">
-      <el-button @click="handleClose">{{ filter_options[8].label }} <i class="el-icon-delete"/></el-button>
+      <el-button @click="handleClose">{{ filter_options[4].label }} <i class="el-icon-delete"/></el-button>
       <occupation-picker @select="handler($event, filterData.type)">
       </occupation-picker>
     </div>

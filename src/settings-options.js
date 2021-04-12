@@ -145,10 +145,6 @@ module.exports = {
       {value: 'GENDER', label: '性别'},
       {value: 'SENIORITY', label: '工龄'},
       {value: 'DEGREE', label: '学历'},
-      {value: 'ATTENDANCE', label: '出勤率'},
-      {value: 'PERFORMANCE', label: '绩效'},
-      {value: 'ATTITUDE', label: '工作态度'},
-      {value: 'ABILITY', label: '工作能力'},
       {value: 'OCCUPATION', label: '职业'},
     ],
     order_type: [
