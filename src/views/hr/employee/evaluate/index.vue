@@ -5,7 +5,7 @@
     <template slot="header">
       总体评分
     </template>
-    <score-rate :score="avgScore" />
+    <score-rate :score="avgScore" :disable="false" />
   </el-card>
   <el-card class="card">
     <template slot="header">
@@ -38,7 +38,7 @@ export default {
       formMess: {
         "desc": ""
       },
-      avgScore: null,
+      avgScore: {attitude: 0, ability: 0},
     }
   },
   methods: {

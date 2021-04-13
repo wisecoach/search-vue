@@ -7,7 +7,7 @@
 
 <script>
 import AmountLineChart from "@/views/components/charts/amount-line-chart";
-import OutEmployeeTable from '@/views/components/tables/employee-inner-table';
+import OutEmployeeTable from '@/views/components/tables/employee-table';
 
 export default {
   name: "index",

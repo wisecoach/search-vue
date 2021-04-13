@@ -79,8 +79,7 @@
           @click="handleRoute('/employee/detail/' + scope.row.id)">查看详细信息</el-button>
         <el-button
           size="mini"
-          type="danger"
-          @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+          @click="handleRoute('/employee/evaluate/' + scope.row.id)">评价</el-button>
         <el-dropdown  style="float: right" @command="handleCommand">
           <el-button
             size="mini"
@@ -88,7 +87,7 @@
             circle
             ></el-button>
           <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item :command="'/info-update/'+scope.row.id">信息修改</el-dropdown-item>
+            <el-dropdown-item :command="'/employee/info-update/'+scope.row.id">信息修改</el-dropdown-item>
           </el-dropdown-menu>
         </el-dropdown>
       </template>
@@ -101,7 +100,7 @@ import {getEmployeeList} from '@/api/employee'
 import {formatBirth, formatDegree} from '@/utils/info-format'
 
 export default {
-  name: "employee-inner-table",
+  name: "employee-table",
   props: {
     tableData: {
       type: Array,
@@ -116,11 +115,7 @@ export default {
   },
   methods: {
     handleRoute(path) {
-      console.log(path)
       this.$router.push({path: path})
-    },
-    handleDelete(index, row) {
-      console.log(index, row);
     },
     handleCommand(val){
       this.$router.push({path: val})

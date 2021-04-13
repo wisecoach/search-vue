@@ -18,11 +18,12 @@
 <script>
 import variables from '@/assets/styles/variables.scss'
 import Hamburger from "@/components/hamburger";
+import SvgIcon from "@/components/svg-icon"
 import {mapGetters} from "vuex";
 
 export default {
   name: 'SidebarLogo',
-  components: {Hamburger},
+  components: {Hamburger, SvgIcon},
   props: {
     collapse: {
       type: Boolean,

@@ -32,7 +32,7 @@ module.exports = {
         name: 'employee',
         path: '/employee',
         meta: {
-          title: '在职员工管理',
+          title: '员工管理',
           icon: 'system'
         },
         hidden: false,
@@ -40,7 +40,7 @@ module.exports = {
         children: [
           {
             path: 'search',
-            component: 'hr/employee-manager/search',
+            component: 'hr/employee/search',
             meta: {
               icon: "system",
               title: '搜索'
@@ -60,7 +60,7 @@ module.exports = {
                   icon: "system",
                   title: '个人信息'
                 },
-                component: 'hr/employee-manager/search',
+                component: 'hr/employee/search',
               },
               {
                 path: 'career',
@@ -68,7 +68,7 @@ module.exports = {
                   icon: "system",
                   title: '经历信息'
                 },
-                component: 'hr/employee-manager/search',
+                component: 'hr/employee/search',
               },
             ]
           },
@@ -88,7 +88,7 @@ module.exports = {
                   icon: "system",
                   title: '个人信息'
                 },
-                component: 'hr/employee-manager/detail'
+                component: 'hr/employee/detail'
               },
               {
                 path: 'career/:carid',
@@ -97,7 +97,7 @@ module.exports = {
                   icon: "system",
                   title: '经历信息'
                 },
-                component: 'hr/employee-manager/career',
+                component: 'hr/employee/career',
               },
             ]
           },
@@ -107,7 +107,7 @@ module.exports = {
               icon: "system",
               title: '信息修改'
             },
-            component: 'hr/employee-manager/search',
+            component: 'hr/employee/search',
           },
           {
             path: 'info-update/:id',
@@ -116,7 +116,192 @@ module.exports = {
               icon: "system",
               title: '信息修改'
             },
-            component: 'hr/employee-manager/info-update',
+            component: 'hr/employee/info-update',
+          },
+          {
+            path: 'evaluate',
+            meta: {
+              title: '评价',
+              icon: 'system'
+            },
+            component: 'hr/employee/search'
+          },
+          {
+            path: 'evaluate/:id',
+            hidden: true,
+            meta: {
+              title: '评价',
+              icon: 'system'
+            },
+            component: 'hr/employee/evaluate'
+          },
+        ]
+      },
+      {
+        name: 'recruit',
+        path: '/recruit',
+        meta: {
+          title: '招聘管理',
+          icon: 'system'
+        },
+        children: [
+          {
+            path: 'search',
+            meta: {
+              title: '搜索',
+              icon: 'system'
+            }
+          },
+          {
+            path: 'hire',
+            meta: {
+              title: '录用',
+              icon: 'system'
+            }
+          },
+          {
+            path: 'hire/:id',
+            hidden: true,
+            meta: {
+              title: '录用',
+              icon: 'ststem'
+            }
+          }
+        ]
+      }
+    ],
+    'manager': [
+      {
+        name: 'index',
+        path: '',
+        hidden: false,
+        component: 'layout',
+        redirect: 'index',
+        children: [
+          {
+            path: 'index',
+            meta: {
+              icon: "system",
+              title: '首页'
+            }
+          },
+        ]
+      },
+      {
+        path: '/employee',
+        meta: {
+          icon: 'system',
+          title: '员工管理'
+        },
+        component: "layout",
+        children: [
+          {
+            path: 'search',
+            meta: {
+              icon: 'system',
+              title: '搜索'
+            }
+          },
+          {
+            path: 'attendance',
+            meta: {
+              icon: 'system',
+              title: '考勤'
+            }
+          },
+          {
+            path: 'attendance/:id',
+            hidden: true,
+            meta: {
+              icon: 'system',
+              title: '考勤'
+            }
+          },
+          {
+            path: 'performance',
+            meta: {
+              icon: 'system',
+              title: '业绩'
+            }
+          },
+          {
+            path: 'performance/:id',
+            hidden: true,
+            meta: {
+              icon: 'system',
+              title: '业绩'
+            }
+          },
+          {
+            path: 'evaluate',
+            meta: {
+              icon: 'system',
+              title: '评价'
+            }
+          },
+          {
+            path: 'evaluate/:id',
+            hidden: true,
+            meta: {
+              icon: 'system',
+              title: '评价'
+            }
+          },
+        ],
+      }
+    ],
+    'enterprise': [
+      {
+        name: 'index',
+        path: '',
+        hidden: false,
+        component: 'layout',
+        redirect: 'index',
+        children: [
+          {
+            path: 'index',
+            meta: {
+              icon: "system",
+              title: '首页'
+            }
+          },
+        ]
+      },
+      {
+        path: '/employee',
+        component: 'layout',
+        meta: {
+          icon: 'system',
+          title: '员工管理'
+        },
+        children: [
+          {
+            path: 'hr',
+            meta: {
+              icon: "system",
+              title: "HR"
+            }
+          },
+          {
+            path: 'manager',
+            meta: {
+              icon: "system",
+              title: "部门主管"
+            }
+          }
+        ]
+      },
+      {
+        path: "/department",
+        hidden: false,
+        component: "layout",
+        children: [
+          {
+            path: '',
+            meta: {
+              icon: "system",
+              title: '部门管理'
+            }
           }
         ]
       }

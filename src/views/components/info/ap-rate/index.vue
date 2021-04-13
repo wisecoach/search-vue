@@ -89,7 +89,7 @@ export default {
         },
         xAxis: {
           type: 'category',
-          name: '距今的第x次经历',
+          name: '距今的第x次记录',
           data: Array(this.score.attendances.length).fill(0).map((item, i) => {
             return this.score.attendances.length-i
           }),
@@ -146,7 +146,7 @@ export default {
         },
         xAxis: {
           type: 'category',
-          name: '距今的第x次经历',
+          name: '距今的第x次记录',
           data: Array(this.score.performances.length).fill(0).map((item, i) => {
             return this.score.performances.length-i
           }),

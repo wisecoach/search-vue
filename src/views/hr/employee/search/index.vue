@@ -1,10 +1,10 @@
 <template>
   <div>
     <el-card>
-      <employee-inner-search @search="handleSearch"/>
+      <employee-search @search="handleSearch"/>
     </el-card>
     <el-card class="container">
-      <employee-inner-table :table-data="tableData" :loading="loading"></employee-inner-table>
+      <employee-table :table-data="tableData" :loading="loading"></employee-table>
       <div class="pager">
         <el-pagination
           @current-change="handlePageChange"
@@ -22,12 +22,12 @@
 import {searchInnerEmployee} from "@/api/search";
 import {formatBirth, formatDegree} from '@/utils/info-format'
 import DepartmentPicker from "@/components/department-picker";
-import EmployeeInnerTable from "@/views/components/tables/employee-inner-table";
-import EmployeeInnerSearch from "@/views/components/search/employee-inner-search";
+import EmployeeTable from "@/views/components/tables/employee-table";
+import EmployeeSearch from "@/views/components/search/employee-search";
 
 export default {
   name: "search",
-  components: {EmployeeInnerSearch, EmployeeInnerTable, DepartmentPicker},
+  components: {EmployeeSearch, EmployeeTable, DepartmentPicker},
   data() {
     return {
       tableData: [],

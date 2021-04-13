@@ -2,7 +2,7 @@
   <div>
     <el-card>
       <template slot="header">
-        基本信息
+        经历信息
       </template>
       <career-detail :career="employeeCareer" />
     </el-card>
