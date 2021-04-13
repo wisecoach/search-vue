@@ -1,11 +1,64 @@
 <template>
   <div class="navbar">
-    <el-button type="primary" @click="toggleSideBar">隐藏/打开侧边栏</el-button>
-    <el-button type="primary" @click="changeTheme('theme-standard')">修改主题为standard</el-button>
-    <el-button type="primary" @click="changeTheme('theme-light')">修改主题为light</el-button>
-    <el-button type="primary" @click="changeTheme('theme-dark')">修改主题为dark</el-button>
-    <theme-picker @change="handleChangeTheme" />
+    <breadcrumb />
     <div class="right-menu">
+      <el-popover trigger="click" class="right-menu-item appearance">
+        <svg-icon icon-class="clothes" slot="reference"></svg-icon>
+        <div class="theme-setting">
+          <h3 style="font-weight: bold">
+            主题风格选择
+          </h3>
+          <div class="setting-checbox-group">
+            <div class="setting-checbox">
+            <div class="setting-checbox-item" @click="changeTheme(theme_options.standard)">
+              <img src="@/assets/images/theme-standard-icon.png" alt="standard">
+              <div v-if="theme === theme_options.standard" class="setting-checbox-selectIcon" style="display: block;">
+                <i aria-label="图标: check" class="anticon anticon-check">
+                  <svg viewBox="64 64 896 896" data-icon="check" width="1em" height="1em" :fill="themeColor" aria-hidden="true"
+                       focusable="false" class="">
+                    <path
+                      d="M912 190h-69.9c-9.8 0-19.1 4.5-25.1 12.2L404.7 724.5 207 474a32 32 0 0 0-25.1-12.2H112c-6.7 0-10.4 7.7-6.3 12.9l273.9 347c12.8 16.2 37.4 16.2 50.3 0l488.4-618.9c4.1-5.1.4-12.8-6.3-12.8z"/>
+                  </svg>
+                </i>
+              </div>
+              <div class="theme-desc">standard</div>
+            </div>
+            <div class="setting-checbox-item" @click="changeTheme(theme_options.light)">
+              <img src="@/assets/images/theme-light-icon.png" alt="light">
+              <div v-if="theme === theme_options.light" class="setting-checbox-selectIcon" style="display: block;">
+                <i aria-label="图标: check" class="anticon anticon-check">
+                  <svg viewBox="64 64 896 896" data-icon="check" width="1em" height="1em" :fill="themeColor" aria-hidden="true"
+                       focusable="false" class="">
+                    <path
+                      d="M912 190h-69.9c-9.8 0-19.1 4.5-25.1 12.2L404.7 724.5 207 474a32 32 0 0 0-25.1-12.2H112c-6.7 0-10.4 7.7-6.3 12.9l273.9 347c12.8 16.2 37.4 16.2 50.3 0l488.4-618.9c4.1-5.1.4-12.8-6.3-12.8z"/>
+                  </svg>
+                </i>
+              </div>
+              <div class="theme-desc">light</div>
+            </div>
+            <div class="setting-checbox-item" @click="changeTheme(theme_options.dark)">
+              <img src="@/assets/images/theme-dark-icon.png" alt="dark">
+              <div v-if="theme === theme_options.dark" class="setting-checbox-selectIcon" style="display: block;">
+                <i aria-label="图标: check" class="anticon anticon-check">
+                  <svg viewBox="64 64 896 896" data-icon="check" width="1em" height="1em" :fill="themeColor" aria-hidden="true"
+                       focusable="false" class="">
+                    <path
+                      d="M912 190h-69.9c-9.8 0-19.1 4.5-25.1 12.2L404.7 724.5 207 474a32 32 0 0 0-25.1-12.2H112c-6.7 0-10.4 7.7-6.3 12.9l273.9 347c12.8 16.2 37.4 16.2 50.3 0l488.4-618.9c4.1-5.1.4-12.8-6.3-12.8z"/>
+                  </svg>
+                </i>
+              </div>
+              <div class="theme-desc">dark</div>
+            </div>
+          </div>
+          </div>
+        </div>
+        <div class="color-setting">
+          <div class="picker">
+            <theme-picker @change="changeThemeColor" />
+          </div>
+          <h3 style="font-weight: bold">主题颜色修改</h3>
+        </div>
+      </el-popover>
       <el-dropdown class="avatar-container right-menu-item hover-effect" trigger="click">
         <div class="avatar-wrapper">
           <img :src="photo" class="user-avatar">
@@ -28,13 +81,19 @@
 import {logout} from '@/api/passport'
 import {theme_options} from '@/settings-options'
 import ThemePicker from '@/components/theme-picker'
-import {mapGetters} from 'vuex'
+import Breadcrumb from '@/components/breadcrumb'
+import {mapGetters, mapState} from 'vuex'
 
 
 export default {
   name: "navbar",
   components: {
-    ThemePicker
+    ThemePicker, Breadcrumb
+  },
+  data(){
+    return {
+      theme_options
+    }
   },
   methods: {
     toggleSideBar(){
@@ -46,7 +105,7 @@ export default {
         value: val
       })
     },
-    handleChangeTheme(val) {
+    changeThemeColor(val) {
       this.$store.dispatch('settings/changeSetting', {
         key: 'theme_color',
         value: val
@@ -54,6 +113,10 @@ export default {
     }
   },
   computed: {
+    ...mapState({
+      theme: state => state.settings.theme,
+      themeColor: state => state.settings.theme_color
+    }),
     ...mapGetters([
       'photo',
       'device'
@@ -107,7 +170,6 @@ export default {
       padding: 0 8px;
       height: 100%;
       font-size: 18px;
-      color: #5a5e66;
       vertical-align: text-bottom;
 
       &.hover-effect {
@@ -142,6 +204,74 @@ export default {
           font-size: 12px;
         }
       }
+    }
+
+    .appearance {
+      cursor: pointer;
+      &:hover {
+        background: rgba(0, 0, 0, .025)
+      }
+    }
+  }
+
+}
+
+.theme-setting {
+  width: 350px;
+  height: 200px;
+  padding: 25px;
+}
+
+.color-setting {
+  width: 350px;
+  height: 100px;
+  padding: 25px;
+
+  .picker {
+    float: right;
+    margin-right: 30px;
+  }
+}
+
+.setting-checbox-group {
+  margin: 20px 10px;
+}
+
+.setting-checbox {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 20px;
+
+  .setting-checbox-item {
+    width: 60px;
+    position: relative;
+    margin-right: 42px;
+    border-radius: 2px;
+    cursor: pointer;
+
+    img {
+      width: 60px;
+      height: 60px;
+    }
+
+    .setting-checbox-selectIcon {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 100%;
+      height: 100%;
+      padding-top: 24px;
+      padding-left: 26px;
+      color: #1890ff;
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .theme-desc {
+      width: 100%;
+      text-align: center;
     }
   }
 }

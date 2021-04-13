@@ -17,10 +17,6 @@ module.exports = {
         hidden: false,
         component: 'layout',
         redirect: 'index',
-        meta: {
-          icon: "system",
-          title: '首页'
-        },
         children: [
           {
             path: 'index',
@@ -30,14 +26,6 @@ module.exports = {
               title: '首页'
             }
           },
-          {
-            path: '/info-update/:id',
-            meta: {
-              icon: "system",
-              title: '信息修改'
-            },
-            component: 'hr/employee-manager/info-update',
-          }
         ]
       },
       {
@@ -70,7 +58,7 @@ module.exports = {
                 path: '',
                 meta: {
                   icon: "system",
-                  title: '全部信息'
+                  title: '个人信息'
                 },
                 component: 'hr/employee-manager/search',
               },
@@ -98,7 +86,7 @@ module.exports = {
                 hidden: true,
                 meta: {
                   icon: "system",
-                  title: '详细信息'
+                  title: '个人信息'
                 },
                 component: 'hr/employee-manager/detail'
               },
