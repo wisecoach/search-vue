@@ -67,7 +67,7 @@ export default {
             this.loading = false
             const code = res.data.code
             if (code === 204) {
-              this.$router.push(this.$route.query.redirect)
+              this.$router.push(this.$route.query.redirect || '/')
             } else if (code === 203){
               this.loginForm.password = ''
               this.$message.error("账号或密码错误")

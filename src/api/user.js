@@ -12,6 +12,13 @@ export function login(form){
   })
 }
 
+export function logout(){
+  return request({
+    url: '/logout',
+    method: 'post',
+  })
+}
+
 export function getCode(){
   return request({
     url: '/user/code',

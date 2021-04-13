@@ -58,15 +58,18 @@
           </div>
           <h3 style="font-weight: bold">主题颜色修改</h3>
         </div>
+        <div class="appearance-init">
+          <el-button @click="initTheme">重置主题</el-button>
+        </div>
       </el-popover>
       <el-dropdown class="avatar-container right-menu-item hover-effect" trigger="click">
         <div class="avatar-wrapper">
-          <img :src="photo" class="user-avatar">
+          <img src="@/assets/images/user.png" class="user-avatar">
           <i class="el-icon-caret-bottom" />
         </div>
         <el-dropdown-menu slot="dropdown">
-          <el-dropdown-item @click.native="setting = true">
-            <span>布局设置</span>
+          <el-dropdown-item>
+            查看个人详细信息
           </el-dropdown-item>
           <el-dropdown-item divided @click.native="logout">
             <span>退出登录</span>
@@ -109,6 +112,18 @@ export default {
       this.$store.dispatch('settings/changeSetting', {
         key: 'theme_color',
         value: val
+      })
+    },
+    initTheme(){
+      this.$store.dispatch('settings/initDefault')
+    },
+    logout(){
+      this.$store.dispatch('Logout').then(res => {
+        if (res.data.code === 205) {
+          this.$store.dispatch('InitDefault').then(()=>{
+            this.$router.go(0)
+          })
+        }
       })
     }
   },
@@ -231,6 +246,11 @@ export default {
     float: right;
     margin-right: 30px;
   }
+}
+
+.appearance-init {
+  text-align: center;
+  padding-bottom: 20px;
 }
 
 .setting-checbox-group {

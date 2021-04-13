@@ -15,7 +15,7 @@ const store = new Vuex.Store({
     tags,
     settings
   },
-  getters
+  getters,
 })
 
 export default store

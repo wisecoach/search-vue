@@ -24,6 +24,21 @@ const mutations = {
 const actions = {
   changeSetting({ commit }, data) {
     commit('CHANGE_SETTING', data)
+  },
+  initDefault({commit}) {
+    return new Promise((resolve) => {
+      let defaultData = [
+        {key: 'theme', value:theme},
+        {key: 'theme_color', value:variables.theme_color},
+        {key: 'show_settings', value:showSettings},
+        {key: 'tags', value:tags},
+        {key: 'fixed_header', value:fixedHeader},
+      ]
+      defaultData.map((item) => {
+        commit('CHANGE_SETTING', item)
+      })
+      resolve()
+    })
   }
 }
 

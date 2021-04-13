@@ -4,7 +4,7 @@ module.exports = {
   /**
    * 主题颜色
    */
-  theme: 'theme-dark',
+  theme: 'theme-standard',
 
   /**
    * 是否系统布局配置

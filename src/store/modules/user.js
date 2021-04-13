@@ -1,5 +1,5 @@
 import {hrInfo, managerInfo, enterpriseInfo} from '@/api/info'
-import {getUserInfobySessionId} from '@/api/user'
+import {getUserInfobySessionId, logout} from '@/api/user'
 import {getSessionId, setSessionId, removeSessionId} from '@/utils/auth'
 import {constantRoutes} from "@/router";
 import {role_routes, role_name_mapper} from '@/settings-options'
@@ -43,13 +43,6 @@ const user = {
   },
 
   actions: {
-    Login({commit}, userInfo){
-      return new Promise((resolve, reject) => {
-        login(...userInfo).then(res => {
-
-        })
-      })
-    },
     GetInfo({commit}){
       return new Promise((resolve, reject) => {
         const callBack = res=>{
@@ -83,8 +76,8 @@ const user = {
           if (res.data.code === 100) {
             let role_name = res.data.data
             commit('SET_ROLE', role_name_mapper[role_name])
-            resolve(res)
           }
+          resolve(res)
         })
       })
     },
@@ -105,9 +98,30 @@ const user = {
           }
         }
       })
-    }
+    },
+    InitDefault({commit}){
+      return new Promise((resolve) => {
+        commit('SET_ID', null)
+        commit('SET_NAME', '')
+        commit('SET_PHOTO', '')
+        commit('SET_ROLE', null)
+        commit('SET_REMEBER', false)
+        commit('SET_ROUTES', [])
+        commit('SET_SIDEBAR_ROUTERS', [])
+        resolve()
+      })
+    },
+    Logout({commit, dispatch}){
+      return new Promise(resolve => {
+        logout().then(res => {
+          resolve(res)
+        })
+      })
+    },
   }
 }
+
+
 function filterAsyncRouter(asyncRouterMap, lastRouter = false, type = false) {
   return asyncRouterMap.filter(route => {
     if (type && route.children) {
