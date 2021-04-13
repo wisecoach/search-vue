@@ -2,14 +2,23 @@
   <div class="sidebar-logo-container" :class="{'collapse':collapse}">
     <transition name="sidebarLogoFade">
       <div v-if="collapse" class="sidebar-logo-link">
-        <hamburger class="hamburger-container" :is-active="collapse" @toggleClick="toggleClick"/>
+        <router-link to="/" style="display: inline-block;width: 54px">
+          <div class="logo-bar">
+            <div class="svg-container">
+              <svg-icon style="font-size: 30px;" icon-class="logo" />
+            </div>
+          </div>
+        </router-link>
       </div>
       <div v-else class="sidebar-logo-link">
         <router-link to="/" style="display: inline-block;width: 120px">
-          <i class="iconfont logo">&#xe645;</i>
-          <div class="logo-title">{{title}}</div>
+          <div class="logo-bar">
+            <div class="svg-container">
+              <svg-icon style="font-size: 30px;" icon-class="logo" />
+            </div>
+            <div class="logo-title">{{title}}</div>
+          </div>
         </router-link>
-        <hamburger class="hamburger-container" :is-active="collapse" @toggleClick="toggleClick"/>
       </div>
     </transition>
   </div>
@@ -24,12 +33,6 @@ import {mapGetters} from "vuex";
 export default {
   name: 'SidebarLogo',
   components: {Hamburger, SvgIcon},
-  props: {
-    collapse: {
-      type: Boolean,
-      required: true
-    }
-  },
   methods: {
     toggleClick(){
       this.$store.dispatch('app/toggleSideBar')
@@ -78,6 +81,20 @@ export default {
   }
 }
 
+.logo-bar{
+  width: 100%;
+  height: 54px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.svg-container {
+  display: inline-block;
+  width: 54px;
+  height: 54px;
+  padding-top: 6px;
+  padding-left: 12px;
+}
 
 .logo {
   font-size: 20px;
@@ -85,8 +102,10 @@ export default {
 }
 
 .logo-title {
-  font-size: 16px;
+  margin-left: 5px;
   display: inline-block;
+  height: 54px;
+  font-size: 20px;
 }
 
 </style>

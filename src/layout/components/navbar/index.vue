@@ -1,5 +1,6 @@
 <template>
   <div class="navbar">
+    <hamburger class="hamburger-container" :is-active="collapse" @toggleClick="toggleClick"/>
     <breadcrumb />
     <div class="right-menu">
       <el-popover trigger="click" class="right-menu-item appearance">
@@ -85,13 +86,14 @@ import {logout} from '@/api/passport'
 import {theme_options} from '@/settings-options'
 import ThemePicker from '@/components/theme-picker'
 import Breadcrumb from '@/components/breadcrumb'
+import Hamburger from '@/components/hamburger'
 import {mapGetters, mapState} from 'vuex'
 
 
 export default {
   name: "navbar",
   components: {
-    ThemePicker, Breadcrumb
+    ThemePicker, Breadcrumb, Hamburger
   },
   data(){
     return {
@@ -99,6 +101,9 @@ export default {
     }
   },
   methods: {
+    toggleClick(){
+      this.$store.dispatch('app/toggleSideBar')
+    },
     toggleSideBar(){
       this.$store.dispatch('app/toggleSideBar')
     },
@@ -134,7 +139,8 @@ export default {
     }),
     ...mapGetters([
       'photo',
-      'device'
+      'device',
+      'sidebar'
     ]),
     setting: {
       get() {
@@ -146,6 +152,9 @@ export default {
           value: val
         })
       }
+    },
+    collapse(){
+      return this.sidebar.opened
     }
   }
 }
@@ -161,6 +170,14 @@ export default {
   -webkit-box-shadow: 0px 1px 2px 0px #A0A0A0;
   box-shadow: 0px 1px 2px 0px #A0A0A0;
 
+  .hamburger-container {
+    line-height: 46px;
+    height: 100%;
+    float: left;
+    cursor: pointer;
+    transition: background .3s;
+    -webkit-tap-highlight-color:transparent;
+  }
 
   .breadcrumb-container {
     float: left;
