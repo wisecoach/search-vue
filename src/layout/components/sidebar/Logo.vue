@@ -44,6 +44,9 @@ export default {
     },
     sideTheme() {
       return this.$store.state.settings.sideTheme
+    },
+    collapse(){
+      return !this.$store.state.app.sidebar.opened
     }
   },
   data() {

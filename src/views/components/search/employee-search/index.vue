@@ -32,11 +32,11 @@
 </template>
 
 <script>
-import {search_employee_options} from '@/settings-options'
+import {search_options} from '@/settings-options'
 import SearchFilter from "./search-filter";
 
 export default {
-  name: "employee-inner-search",
+  name: "employee-search",
   components: {SearchFilter},
   data() {
     return {
@@ -49,7 +49,7 @@ export default {
       new_filter_index: null,
       filters: new Map(),
       filter_tracker: 0,
-      options: search_employee_options,
+      options: search_options.search_employee_options,
     }
   },
   computed: {
@@ -58,11 +58,11 @@ export default {
     },
     handlerList(){
       const list = []
-      list.push(this.handleOccupation)
-      list.push(this.handleOccupation)
-      list.push(this.handleOccupation)
-      list.push(this.handleOccupation)
-      list.push(this.handleOccupation)
+      list.push(this.handleDoubleVal)
+      list.push(this.handleSingleVal)
+      list.push(this.handleDoubleVal)
+      list.push(this.handleDoubleVal)
+      list.push(this.handleSingleVal)
       return list
     },
     filter_map(){
@@ -97,7 +97,7 @@ export default {
     },
     handleNewFilterSelect(val){
       this.selecting = false
-      const type = search_employee_options.filter_type[val].value
+      const type = this.options.filter_type[val].value
       const filter = {
         type,
         handler: this.handlerList[val]
@@ -111,8 +111,14 @@ export default {
     handleSearch(){
       this.$emit('search', this.search_params)
     },
-    handleOccupation(val, type){
-      this.filters.get(type).value = val
+    handleSingleVal(val, type){
+      this.filters.get(type).value = val + '-' + val
+      console.log(this.filters)
+    },
+    handleDoubleVal(val, type){
+      let data = val[0] + '-' + val[1]
+      this.filters.get(type).value = data
+      console.log(this.filters)
     }
   }
 }

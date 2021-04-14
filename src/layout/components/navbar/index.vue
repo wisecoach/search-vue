@@ -154,7 +154,7 @@ export default {
       }
     },
     collapse(){
-      return this.sidebar.opened
+      return this.sidebar.opened == 0
     }
   }
 }
