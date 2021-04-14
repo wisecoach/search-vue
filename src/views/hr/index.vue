@@ -26,7 +26,6 @@
 
 <script>
 import AmountLineChart from '@/views/components/charts/amount-line-chart'
-import {hrInfo} from "@/api/info";
 import 'vuex'
 import {mapState} from "vuex";
 
@@ -38,13 +37,6 @@ export default {
     }
   },
   methods: {
-    init() {
-      hrInfo().then(res => {
-        if (res.data.code === 100) {
-          this.hr = res.data
-        }
-      })
-    }
   },
   computed: {
     ...mapState({

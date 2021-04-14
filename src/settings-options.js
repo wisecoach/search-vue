@@ -240,7 +240,8 @@ module.exports = {
             meta: {
               icon: "home",
               title: '首页'
-            }
+            },
+            component: 'manager'
           },
         ]
       },
@@ -257,7 +258,8 @@ module.exports = {
             meta: {
               icon: 'search',
               title: '搜索'
-            }
+            },
+            component: 'manager/employee/search'
           },
           {
             path: 'detail',
@@ -273,7 +275,7 @@ module.exports = {
                   icon: "detail",
                   title: '详细信息'
                 },
-                component: 'hr/employee/search',
+                component: 'manager/employee/search',
               },
               {
                 path: 'career',
@@ -281,7 +283,7 @@ module.exports = {
                   icon: "career",
                   title: '经历信息'
                 },
-                component: 'hr/employee/search',
+                component: 'manager/employee/search',
               },
             ]
           },
@@ -301,7 +303,7 @@ module.exports = {
                   icon: "detail",
                   title: '详细信息'
                 },
-                component: 'common/employee/detail'
+                component: 'common/employee/detail',
               },
               {
                 path: 'career/:carid',
@@ -319,7 +321,8 @@ module.exports = {
             meta: {
               icon: 'attendance',
               title: '考勤'
-            }
+            },
+            component: 'manager/employee/search',
           },
           {
             path: 'attendance/:id',
@@ -334,7 +337,8 @@ module.exports = {
             meta: {
               icon: 'performance',
               title: '业绩'
-            }
+            },
+            component: 'manager/employee/search',
           },
           {
             path: 'performance/:id',
@@ -349,7 +353,8 @@ module.exports = {
             meta: {
               icon: 'message',
               title: '评价'
-            }
+            },
+            component: 'manager/employee/search',
           },
           {
             path: 'evaluate/:id',
@@ -357,7 +362,8 @@ module.exports = {
             meta: {
               icon: 'message',
               title: '评价'
-            }
+            },
+            component: 'manager/employee/evaluate'
           },
         ],
       }

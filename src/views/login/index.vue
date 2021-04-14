@@ -43,8 +43,8 @@ export default {
   data(){
     return {
       loginForm: {
-        username: 'xhjy_zhaojing',
-        password: 'zhaojing',
+        username: 'xhjy_zhuzhen',
+        password: 'zhuzhen',
         rememberMe: false,
       },
       loading: false,
