@@ -8,9 +8,8 @@ import Layout from '@/layout'
 const user = {
   state: {
     id: null,
-    name: '',
-    photo: '',
     role: null,
+    user: null,
     remeber_me: false,
     routes: [],
     addRoutes: [],
@@ -21,14 +20,11 @@ const user = {
     SET_ID: (state, id) => {
       state.id = id
     },
-    SET_NAME: (state, name) => {
-      state.name = name
-    },
-    SET_PHOTO: (state, photo) => {
-      state.photo = photo
-    },
     SET_ROLE: (state, role) => {
       state.role = role
+    },
+    SET_USER: (state, user) => {
+      state.user = user
     },
     SET_REMEBER: (state, remeberMe) => {
       state.remeber_me = remeberMe
@@ -52,8 +48,7 @@ const user = {
             const name = data.name
             const photo = data.photo
             commit('SET_ID', id)
-            commit('SET_NAME', name)
-            commit('SET_PHOTO', photo)
+            commit('SET_USER', data)
             resolve(res)
           }
         }

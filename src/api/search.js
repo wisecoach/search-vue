@@ -7,17 +7,25 @@ export function searchAllDepartment(){
   })
 }
 
-export function searchDropEmployee(id){
+export function searchHr(id){
   return request({
-    url: '/search/drop' + id,
-    method: 'post'
+    url: '/search/hr/' + id,
+    method: 'get'
   })
 }
 
-export function searchHr(id){
+export function searchManager(id){
   return request({
-    url: '/search/hr' + id,
+    url: '/search/manager/' + id,
     method: 'get'
+  })
+}
+
+export function searchDropEmployee(searchInfo){
+  return request({
+    url: '/search/drop',
+    method: 'post',
+    data: searchInfo
   })
 }
 
@@ -26,12 +34,5 @@ export function searchInnerEmployee(searchInfo){
     url: '/search/inner',
     method: 'post',
     data: searchInfo
-  })
-}
-
-export function searchManager(id){
-  return request({
-    url: '/search/manager' + id,
-    method: 'get'
   })
 }

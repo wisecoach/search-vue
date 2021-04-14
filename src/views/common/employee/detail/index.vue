@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="detail">
     <info-base />
     <el-card>
       <template slot="header">
@@ -108,7 +108,9 @@ export default {
 
 <style lang="scss" scoped>
 .el-card {
-  margin-bottom: 20px;
+  margin-bottom: 50px;
 }
+
+
 
 </style>

@@ -40,6 +40,7 @@ export default {
   width: 100%;
   position: relative;
   overflow-x: hidden;
+  padding-top: 10px;
 }
 
 

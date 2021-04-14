@@ -13,14 +13,6 @@
       </template>
     </el-table-column>
     <el-table-column
-      label="部门"
-      width="100"
-      sortable>
-      <template slot-scope="scope">
-        {{scope.row.department}}
-      </template>
-    </el-table-column>
-    <el-table-column
       label="性别"
       width="100">
       <template slot-scope="scope">
@@ -71,10 +63,10 @@
       <template slot-scope="scope">
         <el-button
           size="mini"
-          @click="handleRoute('/employee/detail/' + scope.row.id)">查看详细信息</el-button>
+          @click="handleRoute('/recruit/detail/' + scope.row.id)">查看详细信息</el-button>
         <el-button
           size="mini"
-          @click="handleRoute('/employee/evaluate/' + scope.row.id)">评价</el-button>
+          @click="handleRoute('/recruit/hire/' + scope.row.id)">录用</el-button>
         <el-dropdown  style="float: right" @command="handleCommand">
           <el-button
             size="mini"
@@ -94,7 +86,7 @@ import {getEmployeeList} from '@/api/employee'
 import {formatBirth, formatDegree} from '@/utils/info-format'
 
 export default {
-  name: "employee-table",
+  name: "recruit-table",
   props: {
     tableData: {
       type: Array,

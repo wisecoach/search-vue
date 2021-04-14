@@ -6,10 +6,9 @@
         :collapse="isCollapse"
         :default-active="activeMenu"
         :active-text-color="theme_color"
-        :collapse-transition="false"
+        :collapse-transition="true"
         mode="vertical"
-        router
-      >
+        router>
         <sidebar-item
           v-for="(route, index) in sidebarRouters"
           :key="route.path + index"
@@ -66,5 +65,9 @@ export default {
   font-size: 40px;
   height: $navbar-height;
   line-height: $navbar-height;
+}
+
+.collapse {
+  width: $navbar-height;
 }
 </style>

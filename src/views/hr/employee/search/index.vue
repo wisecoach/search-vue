@@ -31,7 +31,7 @@ export default {
   data() {
     return {
       tableData: [],
-      pageSize: 20,
+      pageSize: 10,
       page: 0,
       loading: true,
       key: {
@@ -88,13 +88,6 @@ export default {
       this.filters = val.filters
       this.search()
     },
-    handleRoute(path) {
-      console.log(path)
-      // this.$router.push({path: path})
-    },
-    handleCommand(val){
-      this.$router.push({path: val})
-    },
     formatBirth,formatDegree
   },
   mounted() {
@@ -107,6 +100,10 @@ export default {
 .pager {
   padding: 30px 20px;
   text-align: right;
+}
+
+.el-card {
+  margin-bottom: 20px;
 }
 
 </style>

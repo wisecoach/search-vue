@@ -4,7 +4,7 @@
     <el-button @click="handleAddOccupation" :disabled="!selected">
       新增职业
     </el-button>
-    <div ref="chart" :style="{height:'350px',width:'800px'}">
+    <div ref="chart" :style="{height:'350px',width:'100%'}">
     </div>
   </div>
 </template>
@@ -64,7 +64,7 @@ export default {
     option:function (){
       return {
         title: {
-          text: '在职人数折线图',
+          text: '市场在职人数折线图',
           y: 'bottom',
           x: 'center',
           padding: 0

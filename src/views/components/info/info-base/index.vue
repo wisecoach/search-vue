@@ -30,10 +30,10 @@
             <div class="personal-relation">
               <div class="relation-item">在职状态:  <div style="float: right; padding-right:20px;">{{employee.hired}}</div></div>
             </div>
-            <div class="personal-relation">
+            <div class="personal-relation" v-if="employee.hired">
               <div class="relation-item">所属企业ID/企业内ID:  <div style="float: right; padding-right:20px;">{{employee.entid}} / {{employee.innid}}</div></div>
             </div>
-            <div class="personal-relation">
+            <div class="personal-relation" v-if="employee.hired">
               <div class="relation-item">HrID/部门ID:  <div style="float: right; padding-right:20px;">{{employee.hr.id}} / {{employee.depid}}</div></div>
             </div>
           </el-card>

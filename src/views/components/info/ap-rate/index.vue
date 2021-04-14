@@ -219,6 +219,7 @@ export default {
 
   .chart-card {
     height: 400px;
+    padding: 0 20px;
   }
 }
 

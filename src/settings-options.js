@@ -12,7 +12,6 @@ module.exports = {
   role_routes: {
     'hr': [
       {
-        name: 'index',
         path: '',
         hidden: false,
         component: 'layout',
@@ -22,7 +21,7 @@ module.exports = {
             path: 'index',
             component: 'hr',
             meta: {
-              icon: "system",
+              icon: "home",
               title: '首页'
             }
           },
@@ -33,7 +32,7 @@ module.exports = {
         path: '/employee',
         meta: {
           title: '员工管理',
-          icon: 'system'
+          icon: 'peoples'
         },
         hidden: false,
         component: 'layout',
@@ -42,30 +41,30 @@ module.exports = {
             path: 'search',
             component: 'hr/employee/search',
             meta: {
-              icon: "system",
+              icon: "search",
               title: '搜索'
             }
           },
           {
             path: 'detail',
             meta: {
-              icon: "system",
-              title: '详细信息'
+              icon: "document",
+              title: '档案'
             },
             component: 'parent-view',
             children: [
               {
                 path: '',
                 meta: {
-                  icon: "system",
-                  title: '个人信息'
+                  icon: "detail",
+                  title: '详细信息'
                 },
                 component: 'hr/employee/search',
               },
               {
                 path: 'career',
                 meta: {
-                  icon: "system",
+                  icon: "career",
                   title: '经历信息'
                 },
                 component: 'hr/employee/search',
@@ -76,8 +75,8 @@ module.exports = {
             path: 'detail/:id',
             hidden: true,
             meta: {
-              icon: "system",
-              title: '详细信息'
+              icon: "document",
+              title: '档案'
             },
             component: 'parent-view',
             children: [
@@ -85,10 +84,10 @@ module.exports = {
                 path: '',
                 hidden: true,
                 meta: {
-                  icon: "system",
-                  title: '个人信息'
+                  icon: "detail",
+                  title: '详细信息'
                 },
-                component: 'hr/employee/detail'
+                component: 'common/employee/detail'
               },
               {
                 path: 'career/:carid',
@@ -97,14 +96,14 @@ module.exports = {
                   icon: "system",
                   title: '经历信息'
                 },
-                component: 'hr/employee/career',
+                component: 'common/employee/career',
               },
             ]
           },
           {
             path: 'info-update',
             meta: {
-              icon: "system",
+              icon: "edit",
               title: '信息修改'
             },
             component: 'hr/employee/search',
@@ -122,7 +121,7 @@ module.exports = {
             path: 'evaluate',
             meta: {
               title: '评价',
-              icon: 'system'
+              icon: 'message'
             },
             component: 'hr/employee/search'
           },
@@ -131,7 +130,7 @@ module.exports = {
             hidden: true,
             meta: {
               title: '评价',
-              icon: 'system'
+              icon: 'message'
             },
             component: 'hr/employee/evaluate'
           },
@@ -142,22 +141,80 @@ module.exports = {
         path: '/recruit',
         meta: {
           title: '招聘管理',
-          icon: 'system'
+          icon: 'recruit'
         },
+        component: 'layout',
         children: [
           {
             path: 'search',
             meta: {
               title: '搜索',
-              icon: 'system'
-            }
+              icon: 'search'
+            },
+            component: 'hr/recruit/search'
+          },
+          {
+            path: 'detail',
+            meta: {
+              icon: "document",
+              title: '档案'
+            },
+            component: 'parent-view',
+            children: [
+              {
+                path: '',
+                meta: {
+                  icon: "detail",
+                  title: '详细信息'
+                },
+                component: 'hr/recruit/search',
+              },
+              {
+                path: 'career',
+                meta: {
+                  icon: "career",
+                  title: '经历信息'
+                },
+                component: 'hr/recruit/search',
+              },
+            ]
+          },
+          {
+            path: 'detail/:id',
+            hidden: true,
+            meta: {
+              icon: "document",
+              title: '档案'
+            },
+            component: 'parent-view',
+            children: [
+              {
+                path: '',
+                hidden: true,
+                meta: {
+                  icon: "detail",
+                  title: '详细信息'
+                },
+                component: 'common/employee/detail'
+              },
+              {
+                path: 'career/:carid',
+                hidden: true,
+                meta: {
+                  icon: "system",
+                  title: '经历信息'
+                },
+                component: 'common/employee/career',
+              },
+            ]
           },
           {
             path: 'hire',
             meta: {
               title: '录用',
-              icon: 'system'
-            }
+              icon: 'hire'
+            },
+            component: 'hr/employee/search'
           },
           {
             path: 'hire/:id',
@@ -181,7 +238,7 @@ module.exports = {
           {
             path: 'index',
             meta: {
-              icon: "system",
+              icon: "home",
               title: '首页'
             }
           },
@@ -190,22 +247,77 @@ module.exports = {
       {
         path: '/employee',
         meta: {
-          icon: 'system',
-          title: '员工管理'
+          title: '员工管理',
+          icon: 'peoples'
         },
         component: "layout",
         children: [
           {
             path: 'search',
             meta: {
-              icon: 'system',
+              icon: 'search',
               title: '搜索'
             }
           },
           {
+            path: 'detail',
+            meta: {
+              icon: "document",
+              title: '档案'
+            },
+            component: 'parent-view',
+            children: [
+              {
+                path: '',
+                meta: {
+                  icon: "detail",
+                  title: '详细信息'
+                },
+                component: 'hr/employee/search',
+              },
+              {
+                path: 'career',
+                meta: {
+                  icon: "career",
+                  title: '经历信息'
+                },
+                component: 'hr/employee/search',
+              },
+            ]
+          },
+          {
+            path: 'detail/:id',
+            hidden: true,
+            meta: {
+              icon: "document",
+              title: '档案'
+            },
+            component: 'parent-view',
+            children: [
+              {
+                path: '',
+                hidden: true,
+                meta: {
+                  icon: "detail",
+                  title: '详细信息'
+                },
+                component: 'common/employee/detail'
+              },
+              {
+                path: 'career/:carid',
+                hidden: true,
+                meta: {
+                  icon: "system",
+                  title: '经历信息'
+                },
+                component: 'common/employee/career',
+              },
+            ]
+          },
+          {
             path: 'attendance',
             meta: {
-              icon: 'system',
+              icon: 'attendance',
               title: '考勤'
             }
           },
@@ -213,14 +325,14 @@ module.exports = {
             path: 'attendance/:id',
             hidden: true,
             meta: {
-              icon: 'system',
+              icon: 'attendance',
               title: '考勤'
             }
           },
           {
             path: 'performance',
             meta: {
-              icon: 'system',
+              icon: 'performance',
               title: '业绩'
             }
           },
@@ -228,14 +340,14 @@ module.exports = {
             path: 'performance/:id',
             hidden: true,
             meta: {
-              icon: 'system',
+              icon: 'performance',
               title: '业绩'
             }
           },
           {
             path: 'evaluate',
             meta: {
-              icon: 'system',
+              icon: 'message',
               title: '评价'
             }
           },
@@ -243,7 +355,7 @@ module.exports = {
             path: 'evaluate/:id',
             hidden: true,
             meta: {
-              icon: 'system',
+              icon: 'message',
               title: '评价'
             }
           },
@@ -271,21 +383,21 @@ module.exports = {
         path: '/employee',
         component: 'layout',
         meta: {
-          icon: 'system',
+          icon: 'peoples',
           title: '员工管理'
         },
         children: [
           {
             path: 'hr',
             meta: {
-              icon: "system",
+              icon: "hr",
               title: "HR"
             }
           },
           {
             path: 'manager',
             meta: {
-              icon: "system",
+              icon: "manager",
               title: "部门主管"
             }
           }
@@ -299,7 +411,7 @@ module.exports = {
           {
             path: '',
             meta: {
-              icon: "system",
+              icon: "tree",
               title: '部门管理'
             }
           }
@@ -330,7 +442,6 @@ module.exports = {
       key_type: [
         {value: "NAME", label: "姓名"},
         {value: "MAJOR", label: "专业"},
-        {value: "DEPARTMENT", label: "部门"},
       ],
       filter_type: [
         {value: 'BIRTH', label: '年龄'},
