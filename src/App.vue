@@ -40,10 +40,12 @@ export default {
 //滚动条的滑块
 ::-webkit-scrollbar-thumb {
   background-color: #a1a3a9;
-  border-radius: 5px;
+  width: 10px;
+  border-radius: 50%;
 }
 ::-webkit-scrollbar-thumb:hover {
   background-color: #919399;
-  border-radius: 5px;
+  width: 10px;
+  border-radius: 50%;
 }
 </style>

@@ -381,7 +381,8 @@ module.exports = {
             meta: {
               icon: "system",
               title: '首页'
-            }
+            },
+            component: 'enterprise'
           },
         ]
       },
@@ -398,20 +399,21 @@ module.exports = {
             meta: {
               icon: "hr",
               title: "HR"
-            }
+            },
+            component: 'enterprise/employee/hr'
           },
           {
             path: 'manager',
             meta: {
               icon: "manager",
               title: "部门主管"
-            }
+            },
+            component: 'enterprise/employee/manager'
           }
         ]
       },
       {
         path: "/department",
-        hidden: false,
         component: "layout",
         children: [
           {
@@ -419,7 +421,8 @@ module.exports = {
             meta: {
               icon: "tree",
               title: '部门管理'
-            }
+            },
+            component: 'enterprise/department'
           }
         ]
       }

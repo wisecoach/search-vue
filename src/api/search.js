@@ -7,16 +7,16 @@ export function searchAllDepartment(){
   })
 }
 
-export function searchHr(id){
+export function searchHr(){
   return request({
-    url: '/search/hr/' + id,
+    url: '/search/hr',
     method: 'get'
   })
 }
 
-export function searchManager(id){
+export function searchManager(){
   return request({
-    url: '/search/manager/' + id,
+    url: '/search/manager',
     method: 'get'
   })
 }

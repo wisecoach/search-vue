@@ -1,7 +1,7 @@
 <template>
   <div class="login">
     <el-form ref="loginForm" status-icon :model="loginForm" :rules="rules" class="login-form">
-      <h3 class="title">斯尔琪人才管理系统</h3>
+      <h3 class="title">斯尔奇人才管理系统</h3>
       <el-form-item prop="username">
         <el-input v-model="loginForm.username" type="text" auto-complete="off" placeholder="账号">
           <svg-icon slot="prefix" icon-class="user" class="el-input__icon input-icon" />
@@ -43,8 +43,8 @@ export default {
   data(){
     return {
       loginForm: {
-        username: 'xhjy_zhuzhen',
-        password: 'zhuzhen',
+        username: 'xhjy',
+        password: 'xhjy',
         rememberMe: false,
       },
       loading: false,

@@ -5,8 +5,8 @@ const getters = {
   visitedViews: state=>state.tags.visited_views,
   cachedViews: state=>state.tags.cached_views,
   token: state => state.user.token,
-  photo: state => state.user.photo,
-  name: state => state.user.name,
+  photo: state => state.user.user.photo,
+  name: state => state.user.user.name,
   role: state => state.user.role,
   sidebarRouters: state => state.user.sidebarRouters
 }

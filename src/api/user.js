@@ -38,7 +38,7 @@ export function changeHrAccount(id, password){
   return request({
     url: '/user/hr',
     method: 'put',
-    params: {occid: id, password: password}
+    data: {id: id, password: password}
   })
 }
 
@@ -50,17 +50,24 @@ export function createManagerAccount(manager){
   })
 }
 
-export function changeMangerAccount(id, password){
+export function changeManagerAccount(id, password){
   return request({
     url: '/user/manager',
     method: 'put',
-    params: {occid: id, password: password}
+    data: {id: id, password: password}
   })
 }
 
 export function getUserInfobySessionId(){
   return request({
     url: '/user/myInfo',
+    method: 'get'
+  })
+}
+
+export function checkDuplicatedName(name) {
+  return request({
+    url: '/user/check/' + name,
     method: 'get'
   })
 }

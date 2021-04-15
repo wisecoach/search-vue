@@ -8,10 +8,10 @@ export function createDepartment(department){
   })
 }
 
-export function changeDepartment(name){
+export function changeDepartment(department){
   return request({
     url: '/department',
     method: 'put',
-    params: name
+    data: department
   })
 }
