@@ -1,5 +1,5 @@
 import Vue from 'vue'
-
+import VueCropper from 'vue-cropper'
 import Cookies from 'js-cookie'
 
 import ElementUI from 'element-ui'
@@ -15,7 +15,6 @@ import router from './router'
 
 import './assets/icons'
 import './permission'
-// import './mock'
 
 Vue.prototype.msgSuccess = function (msg) {
   this.$message({ showClose: true, message: msg, type: "success" });
@@ -31,6 +30,7 @@ Vue.prototype.msgInfo = function (msg) {
 
 Vue.config.productionTip = false
 Vue.use(ElementUI)
+Vue.use(VueCropper)
 
 new Vue({
   el: '#app',

@@ -101,7 +101,7 @@ module.exports = {
             ]
           },
           {
-            path: 'info-update',
+            path: 'update',
             meta: {
               icon: "edit",
               title: '信息修改'
@@ -109,13 +109,13 @@ module.exports = {
             component: 'hr/employee/search',
           },
           {
-            path: 'info-update/:id',
+            path: 'update/:id',
             hidden: true,
             meta: {
               icon: "system",
               title: '信息修改'
             },
-            component: 'hr/employee/info-update',
+            component: 'hr/employee/update',
           },
           {
             path: 'evaluate',

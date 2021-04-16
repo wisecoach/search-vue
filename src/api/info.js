@@ -8,10 +8,11 @@ export function createEmployeeInfo(Info){
   })
 }
 
-export function changeEmployeeInfo(id){
+export function changeEmployeeInfo(employee){
   return request({
-    url: '/info/employee/' + id,
-    method: 'put'
+    url: '/info/employee',
+    method: 'put',
+    data: employee
   })
 }
 

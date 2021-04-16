@@ -1,226 +1,173 @@
 <template>
-  <div>
-    <el-row :gutter="20" style="margin-top:10px;">
-      <el-col :span="8">
-        <div class="grid-content bg-purple">
-          <el-card class="box-card">
-            <div slot="header" class="clearfix">
-              <span>个人信息</span>
-            </div>
-            <div class="name-role">
-              <div class="image-preview" style="float: left; width: 60px; height: 70px">
-                <el-image
-                  style="width: 70px; height: 70px"
-                  :src="url"
-                  :preview-src-list="srcList">
-                </el-image>
+  <div v-if="employee">
+    <el-row :gutter="20" style="margin-bottom: 20px">
+        <el-col :span="8">
+          <div class="grid-content bg-purple">
+            <el-card class="box-card">
+              <div slot="header" class="clearfix">
+                <span>员工信息</span>
               </div>
-              <p class="sender">员工姓名 ： {{employee.name}}</p>
-          <p class="registe-info">
-            创建时间：{{employee.ctime}}
-          </p>
-            </div>
-            <el-divider></el-divider>
-            <div class="personal-relation">
-              <div class="relation-item">联系电话:  <div style="float: right; padding-right:20px;">{{employee.tel}}</div></div>
-            </div>
-            <div class="personal-relation">
-              <div class="relation-item">电子邮箱：  <div style="float: right; padding-right:20px;">{{employee.mail}}</div></div>
-            </div>
-            <div class="personal-relation">
-              <div class="relation-item">在职状态:  <div style="float: right; padding-right:20px;">{{employee.hired}}</div></div>
-            </div>
-            <div class="personal-relation" v-if="employee.hired">
-              <div class="relation-item">所属企业ID/企业内ID:  <div style="float: right; padding-right:20px;">{{employee.entid}} / {{employee.innid}}</div></div>
-            </div>
-            <div class="personal-relation" v-if="employee.hired">
-              <div class="relation-item">HrID/部门ID:  <div style="float: right; padding-right:20px;">{{employee.hr.id}} / {{employee.depid}}</div></div>
-            </div>
-          </el-card>
-        </div>
-      </el-col>
-      <el-col :span="16">
-        <div class="grid-content bg-purple">
+              <div class="name-role">
+                <el-col :span="8">
+                  <div class="sender">员工姓名：{{employee.name}}</div>
+                </el-col>
+                <el-col :span="16">
+                  <div class="photo">
+                    <div>
+                      <el-image
+                        style="width: 100px;height: 100px;margin-left: 20px;border-radius: 5px"
+                        :src="employee.photo">
+                      </el-image>
+                    </div>
+                  </div>
+                </el-col>
+              </div>
+              <el-divider></el-divider>
+              <div class="user-base">
+                <div><span>在职状态：</span>{{employee.hired?'在职':'未就职'}}</div>
+                <div><span>所属公司：</span>{{employee.enterprise}}</div>
+                <div><span>所属部门：</span>{{employee.department}}</div>
+              </div>
+            </el-card>
+          </div>
+        </el-col>
+        <el-col :span="16">
           <el-card class="box-card">
             <div slot="header" class="clearfix">
               <span>基本资料</span>
             </div>
-            <div>
-              <el-form label-width="80px" v-model="dataForm" size="small" label-position="right">
-                <div class="personal-relation">
-                  <div class="relation-item">性别:  <div style="float: right; padding-right:20px;">{{employee.gender}}</div></div>
-                </div>
-                <div class="personal-relation">
-                  <div class="relation-item">出生日期:  <div style="float: right; padding-right:20px;">{{employee.birth}}</div></div>
-                </div>
-                <div class="personal-relation">
-                  <div class="relation-item">户籍地址  <div style="float: right; padding-right:20px;">{{employee.address}}</div></div>
-                </div>
-                <div class="personal-relation">
-                  <div class="relation-item">专业  <div style="float: right; padding-right:20px;">{{employee.major}}</div></div>
-                </div>
-                <div class="personal-relation">
-                  <div class="relation-item">学历  <div style="float: right; padding-right:20px;">{{employee.degree}}</div></div>
-                </div>
-                <div class="personal-relation">
-                  <div class="relation-item">毕业院校  <div style="float: right; padding-right:20px;">{{employee.school}}</div></div>
-                </div>
-                <div class="personal-relation">
-                  <div class="relation-item">工龄  <div style="float: right; padding-right:20px;">{{employee.seniority}}</div></div>
-                </div>
-                <div class="personal-relation">
-                  <div class="relation-item">简历  <div style="float: right; padding-right:20px;">{{employee.resume}}</div></div>
-                </div>
-              </el-form>
-            </div>
+            <el-form :model="employee" label-width="80px" label-position="left">
+              <el-row :gutter="30">
+                <el-col :span="12">
+                  <el-form-item label="性别">
+                    {{employee.gender==1?'男':'女'}}
+                  </el-form-item>
+                  <el-form-item label="出生日期">
+                    {{formatDate(employee.birth, 'yyyy-MM-dd')}}
+                  </el-form-item>
+                  <el-form-item label="工龄">
+                    {{employee.seniority}}
+                  </el-form-item>
+                  <el-form-item label="联系电话">
+                    {{employee.tel}}
+                  </el-form-item>
+                  <el-form-item label="电子邮箱">
+                    {{employee.mail}}
+                  </el-form-item>
+                </el-col>
+                <el-col :span="12">
+                  <el-form-item label="地址">
+                    {{employee.address}}
+                  </el-form-item>
+                  <el-form-item label="主修专业">
+                    {{employee.major}}
+                  </el-form-item>
+                  <el-form-item label="学历层次">
+                    {{formatDegree(employee.degree)}}
+                  </el-form-item>
+                  <el-form-item label="毕业院校">
+                    {{employee.school}}
+                  </el-form-item>
+                  <el-form-item label="简历">
+                    <a target="_blank" :href="employee.resume">查看简历</a>
+                  </el-form-item>
+                </el-col>
+              </el-row>
+            </el-form>
           </el-card>
-        </div>
-      </el-col>
-
-    </el-row>
+        </el-col>
+      </el-row>
   </div>
-
 </template>
 
 <script>
+import {formatDate} from "@/utils/date";
+import {formatDegree} from '@/utils/info-format'
+
 export default {
   name: "info-base",
   props: {
-    employee: {
-      type: Object,
-      default: function () {
-        return{
-          "id": 0,
-          "ctime": null,
-          "name": "NAME:0page1",
-          "birth": "2021-04-08T09:00:47.704+00:00",
-          "gender": 0,
-          "seniority": null,
-          "degree": 1,
-          "school": null,
-          "entid": null,
-          "depid": null,
-          "major": null,
-          "tel": "17333072508",
-          "hired": true,
-          "photo": "",
-          "address": "你猜我家在哪",
-          "mail": "17333072508@qq.com",
-          "resume": "",
-          "enterprise": "果蔬文化有限公司",
-          "department": "技术部",
-          "hr": {
-          "id": null,
-            "ctime": null,
-            "username": null,
-            "enterprise": null,
-            "name": null,
-            "photo": null
-        },
-          "innid": "0"
-        }
-      }
-    }
+    employee: Object
   },
   data(){
     return{
-      dataForm:{
-
-      },
-      url: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
-      srcList: [
-        'https://fuss10.elemecdn.com/8/27/f01c15bb73e1ef3793e64e6b7bbccjpeg.jpeg',
-        'https://fuss10.elemecdn.com/1/8e/aeffeb4de74e2fde4bd74fc7b4486jpeg.jpeg'
-      ]
+      degrees
     }
+  },
+  methods: {
+    formatDate, formatDegree
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.text {
-  font-size: 14px;
+
+* {
+  font-size: 16px;
 }
 
-.image-preview{
-  width:300px;
-  height:120px;
-  float:left;
-}
-.item {
-  margin-bottom: 18px;
-}
-
-.clearfix:before,
-.clearfix:after {
-  display: table;
-  content: "";
-}
-.clearfix:after {
-  clear: both
+.root-card {
+  padding-bottom: 30px;
 }
 
 .box-card {
-  width: 100%;
   height: 430px;
-  margin-bottom: 20px;
 }
 
 .name-role {
-  width:350px;
-  height:70px;
+  height:100px;
   font-size: 16px;
-  padding: 5px;
-  text-align:right;
+
+  .sender {
+    height: 100px;
+    line-height: 100px;
+  }
 }
-.sender{
-  text-align:right;
-  padding-top: 20px;
+
+.user-base {
+  div {
+    padding: 10px;
+
+    span{
+      display: inline-block;
+      width: 150px;
+    }
+  }
 }
-.registe-info{
-  text-align: right;
-  padding-top:1px;
+
+.info-base {
+  div {
+    padding: 10px;
+    width: 100%;
+
+    span{
+      display: inline-block;
+      width: 300px;
+    }
+  }
 }
-.personal-relation {
-  font-size: 16px;
-  padding: 0px 5px 13px;
-  margin-right: 1px;
-  width: 100%
+
+.submit-button {
+  padding-top: 40px;
+  text-align: center;
 }
 
 .relation-item {
-  padding: 2px;
+  padding: 10px;
+}
 
-}
-.dialog-footer{
-  padding-top:10px ;
-  padding-left: 10%;
-}
-//布局样式区
-.el-row {
-  margin-bottom: 20px;
-  &:last-child {
-    margin-bottom: 0;
+.photo {
+  width: 120px;
+  height: 100px;
+  float: right;
+
+  div {
+    width: 100px;
+    height: 100%;
+    line-height: 100px;
+    display: inline-block;
+    vertical-align: text-bottom;
   }
 }
-.el-col {
-  border-radius: 4px;
-}
-.bg-purple-dark {
-  background: #99a9bf;
-}
-.bg-purple {
-  background: #d3dce6;
-}
-.bg-purple-light {
-  background: #e5e9f2;
-}
-.grid-content {
-  border-radius: 4px;
-  min-height: 36px;
-}
-.row-bg {
-  padding: 10px 0;
-  background-color: #f9fafc;
-}
+
 </style>

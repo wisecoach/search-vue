@@ -65,8 +65,8 @@ export default {
           for (let item of listdata){
             this.tableData.push(item)
           }
-          this.loading = false
         }
+        this.loading = false
       })
     },
     validateSearchInfo(){

@@ -29,12 +29,14 @@ import InfoBase from "@/views/components/info/info-base";
 import CareerBase from "@/views/components/info/career-base";
 import ScoreRate from "@/views/components/info/score-rate";
 import axios from 'axios';
+import {searchInfobyId} from "@/api/info";
 
 export default {
   name: "evaluate",
   components: {ScoreRate, CareerBase, InfoBase},
   data(){
     return{
+      employee: null,
       formMess: {
         "desc": ""
       },
@@ -49,7 +51,11 @@ export default {
       this.getAvgScore()
     },
     getEmployee(){
-
+      searchInfobyId(this.$route.params.id).then(res => {
+        if (res.data.code === 100) {
+          this.employee = res.data.data
+        }
+      })
     },
     onSubmit() {
       console.log('submit!');

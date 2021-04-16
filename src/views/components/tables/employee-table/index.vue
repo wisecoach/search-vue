@@ -75,16 +75,20 @@
         <el-button
           size="mini"
           @click="handleRoute('/employee/evaluate/' + scope.row.id)">评价</el-button>
-        <el-dropdown  style="float: right" @command="handleCommand">
-          <el-button
-            size="mini"
-            icon="el-icon-more"
-            circle
-            ></el-button>
-          <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item :command="'/employee/info-update/'+scope.row.id">信息修改</el-dropdown-item>
-          </el-dropdown-menu>
-        </el-dropdown>
+        <el-button
+          size="mini"
+          @click="handleRoute('/employee/update/' + scope.row.id)">信息修改</el-button>
+
+        <!--        <el-dropdown  style="float: right" @command="handleCommand">-->
+<!--          <el-button-->
+<!--            size="mini"-->
+<!--            icon="el-icon-more"-->
+<!--            circle-->
+<!--            ></el-button>-->
+<!--          <el-dropdown-menu slot="dropdown">-->
+<!--            <el-dropdown-item :command="'/employee/info-update/'+scope.row.id">信息修改</el-dropdown-item>-->
+<!--          </el-dropdown-menu>-->
+<!--        </el-dropdown>-->
       </template>
     </el-table-column>
   </el-table>

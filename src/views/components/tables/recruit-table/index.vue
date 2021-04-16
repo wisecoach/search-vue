@@ -67,7 +67,7 @@
         <el-button
           size="mini"
           @click="handleRoute('/recruit/hire/' + scope.row.id)">录用</el-button>
-        <el-dropdown  style="float: right" @command="handleCommand">
+        <el-dropdown style="float: right" @command="handleCommand">
           <el-button
             size="mini"
             icon="el-icon-more"

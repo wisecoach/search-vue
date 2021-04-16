@@ -1,6 +1,6 @@
 <template>
   <div class="detail">
-    <info-base />
+    <info-base :employee="employee" />
     <el-card>
       <template slot="header">
         员工履历
@@ -25,6 +25,7 @@
 
 <script>
 import {searchAllCareerbyEmpid, searchAllAvgbyEmpid, searchAllCrimebyEmpid} from '@/api/career'
+import {searchInfobyId} from '@/api/info'
 import InfoBase from "@/views/components/info/info-base";
 import CareerBase from "@/views/components/info/career-base";
 import ScoreRate from "@/views/components/info/score-rate";
@@ -74,7 +75,11 @@ export default {
       this.getCrimes()
     },
     getEmployee(){
-
+      searchInfobyId(this.$route.params.id).then(res => {
+        if (res.data.code === 100) {
+          this.employee = res.data.data
+        }
+      })
     },
     getCareers(){
       searchAllCareerbyEmpid(this.id).then(res => {

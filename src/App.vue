@@ -41,11 +41,11 @@ export default {
 ::-webkit-scrollbar-thumb {
   background-color: #a1a3a9;
   width: 10px;
-  border-radius: 50%;
+  border-radius: 5px;
 }
 ::-webkit-scrollbar-thumb:hover {
   background-color: #919399;
   width: 10px;
-  border-radius: 50%;
+  border-radius: 5px;
 }
 </style>
