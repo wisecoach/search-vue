@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-select v-model="selectedDepartment" placeholder="请选择备选部门" @change="">
+    <el-select v-model="selectedDepartment" placeholder="请选择部门" @change="handleChange">
       <el-option
         v-for="department in departments"
         :key="department.value"
@@ -16,10 +16,13 @@ import {searchAllDepartment} from '@/api/search'
 
 export default {
   name: "department-picker",
+  props: {
+    value: Number
+  },
   data(){
     return {
-      selectedDepartment: '',
-      departments: []
+      selectedDepartment: null,
+      departments: [],
     }
   },
   methods: {
@@ -32,12 +35,11 @@ export default {
               label: item.name
             }
           })
-
         }
       })
     },
     handleChange(val){
-      this.$emit('select', val)
+      this.$emit('input', val)
     }
   },
   mounted() {

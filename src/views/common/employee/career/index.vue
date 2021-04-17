@@ -10,8 +10,13 @@
       <template slot="header">
         总体评分
       </template>
-      <score-rate :score="avgScore"/>
-      <ap-rate :score="apScore"/>
+      <div v-if="validScore">
+        <score-rate :score="avgScore" />
+        <ap-rate :score="apScore" />
+      </div>
+      <div style="text-align: center" v-else>
+        暂时还没有记录哦~
+      </div>
     </el-card>
     <el-card>
       <template slot="header">
@@ -57,6 +62,7 @@ export default {
       performances: [],
       crimes: [],
       avgScore: null,
+      validScore: true
     }
   },
   computed: {
@@ -66,15 +72,21 @@ export default {
       let avgAttendance = 0
       let avgPerformance = 0
       this.attendances.map((item) => {
-        attendanceList.push(item.attendance)
-        avgAttendance += item.attendance
+        if (item.attendance != null) {
+          attendanceList.push(item.attendance)
+          avgAttendance += item.attendance
+        }
+        if (item.performance != null) {
+          performanceList.push(item.performance)
+          avgPerformance += item.performance
+        }
       })
-      this.performances.map((item) => {
-        performanceList.push(item.performance)
-        avgPerformance += item.performance
-      })
-      avgAttendance /= this.attendances.length * 20
-      avgPerformance /= this.performances.length * 20
+      if (attendanceList.length == 0 || performanceList.length) {
+        this.validScore = false
+      }else{
+        avgAttendance /= attendanceList.length * 20
+        avgPerformance /= performanceList.length * 20
+      }
       return {
         attendances: attendanceList,
         performances: performanceList,

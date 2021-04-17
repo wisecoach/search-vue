@@ -1,6 +1,7 @@
 <template>
   <div>
-    <el-collapse accordion v-model="activeName">
+    <el-collapse
+      accordion v-model="activeName">
       <el-collapse-item
         v-for="career in careers"
         :name="career.id"
@@ -15,9 +16,9 @@
         </template>
         <div class="career-body">
           <span>工作开始时间：{{formatDate(career.stime, "yyyy年MM月dd日")}}</span>
-          <span>工作结束时间：{{formatDate(career.etime, "yyyy年MM月dd日")}}</span>
-          <span>考勤：{{career.attendance.toFixed(2)}}%</span>
-          <span>业绩：{{career.performance.toFixed(2)}}%</span>
+          <span>工作结束时间：{{formatDate(career.etime, "yyyy年MM月dd日") || '该次经历还未结束'}}</span>
+          <span>考勤：{{career.attendance?career.attendance.toFixed(2)+'%':'暂时还无记录'}}</span>
+          <span>业绩：{{career.performance?career.performance.toFixed(2)+'%':'暂时还无记录'}}</span>
           <router-link :to="$route.path+ '/career/' +career.id">查看详情 <i class="el-icon-arrow-right"/> </router-link>
         </div>
       </el-collapse-item>

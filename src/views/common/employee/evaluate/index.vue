@@ -5,7 +5,7 @@
     <template slot="header">
       总体评分
     </template>
-    <score-rate :score="avgScore" :disable="false" />
+    <score-rate :score="score" :disable="false" />
   </el-card>
   <el-card class="card">
     <template slot="header">
@@ -13,7 +13,10 @@
     </template>
     <el-form>
     <el-form-item label="评价内容">
-      <el-input type="textarea" v-model="formMess.desc" ></el-input>
+      <el-input
+        type="textarea"
+        :rows="5"
+        v-model="score.detail" ></el-input>
     </el-form-item>
     <el-form-item>
       <el-button type="primary" @click="onSubmit">提交</el-button>
@@ -24,69 +27,48 @@
 </template>
 
 <script>
-import {searchAllCareerbyEmpid, searchAllAvgbyEmpid} from '@/api/career'
+import {searchAllCareerbyEmpid, searchAllAvgbyEmpid, detailedComment} from '@/api/career'
 import InfoBase from "@/views/components/info/info-base";
 import CareerBase from "@/views/components/info/career-base";
 import ScoreRate from "@/views/components/info/score-rate";
 import axios from 'axios';
+import {searchInfobyId} from "@/api/info";
 
 export default {
   name: "evaluate",
   components: {ScoreRate, CareerBase, InfoBase},
   data(){
     return{
+      employee: null,
       formMess: {
         "desc": ""
       },
-      avgScore: {attitude: 0, ability: 0},
+      score: {}
     }
   },
   methods: {
     init(){
       this.id = this.$route.params.id
+      this.score.empid = this.id
       this.getEmployee()
-      this.getCareers()
-      this.getAvgScore()
     },
     getEmployee(){
-
+      searchInfobyId(this.$route.params.id).then(res=>{
+        if (res.data.code === 100) {
+          this.employee = res.data.data
+        }
+      })
     },
     onSubmit() {
-      console.log('submit!');
-      let formData = new FormData();
-      for(var key in this.formMess){
-        formData.append(key,this.formMess[key]);
-      }
-
-      axios({
-        method:"post",
-        url:"",
-        headers: {
-          "Content-Type": "multipart/form-data"
-        },
-        withCredentials:true,
-        data:formData
-      }).then((res)=>{
-        console.log(res);
-      });
-
-    },
-    getAvgScore(){
-      searchAllAvgbyEmpid(this.id).then(res => {
-        if (res.data.code === 100) {
-          this.avgScore = res.data.data
-          this.avgScore.attitude /= 20
-          this.avgScore.ability /= 20
+      detailedComment(this.score).then(res=>{
+        if(res.data.code === 100){
+          this.$message.success(res.data.msg)
+          this.$router.push("/employee/evaluate")
+        }else{
+          this.$message.error(res.data.msg)
         }
       })
     },
-    getCareers(){
-      searchAllCareerbyEmpid(this.id).then(res => {
-        if (res.data.code === 100) {
-          this.careers = res.data.data
-        }
-      })
-    }
   },
   mounted() {
     this.init()

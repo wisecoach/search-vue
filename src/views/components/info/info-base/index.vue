@@ -8,10 +8,10 @@
                 <span>员工信息</span>
               </div>
               <div class="name-role">
-                <el-col :span="8">
+                <el-col :span="12">
                   <div class="sender">员工姓名：{{employee.name}}</div>
                 </el-col>
-                <el-col :span="16">
+                <el-col :span="12">
                   <div class="photo">
                     <div>
                       <el-image
@@ -24,7 +24,7 @@
               </div>
               <el-divider></el-divider>
               <div class="user-base">
-                <div><span>在职状态：</span>{{employee.hired?'在职':'未就职'}}</div>
+                <div><span>在职状态：</span>{{employee.hired?'在职':'未就职'}}<router-link style="float: right" v-if="!employee.hired" :to="'/recruit/hire/' + employee.id">点击进入录用页面</router-link></div>
                 <div><span>所属公司：</span>{{employee.enterprise}}</div>
                 <div><span>所属部门：</span>{{employee.department}}</div>
               </div>

@@ -223,7 +223,9 @@ export default {
         if (res.data.code === 100) {
           this.getHrs()
           this.visibleNewUserDialog = false
-          this.$message.success("账号创建成功")
+          this.$message.success(res.data.msg)
+        }else {
+          this.$message.error(res.data.msg)
         }
       })
     },

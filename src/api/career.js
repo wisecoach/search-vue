@@ -1,10 +1,11 @@
 import request from '@/utils/request'
 import {removeResizeListener} from "element-ui/src/utils/resize-event";
 
-export function inputAttendance(empid){
+export function inputAttendance(attendance){
   return request({
-    url: '/career/attendance' + empid,
+    url: '/career/attendance',
     method: 'post',
+    data: attendance
   })
 }
 
@@ -51,17 +52,19 @@ export function searchThisCrimebycarid(carid){
   })
 }
 
-export  function getEmployed(){
+export  function getEmployed(career){
   return request({
     url: '/career/employ',
-    method: 'post'
+    method: 'post',
+    data: career
   })
 }
 
-export function inputPerformance(){
+export function inputPerformance(performance){
   return request({
     url: '/career/performance',
-    method: 'post'
+    method: 'post',
+    data: performance
   })
 }
 
@@ -87,10 +90,11 @@ export function searchCommentbyCaridPageSize(carid, page, pageSize){
   })
 }
 
-export function detailedComment(){
+export function detailedComment(score){
   return request({
     url: '/career/score',
-    method: 'post'
+    method: 'post',
+    data: score
   })
 }
 

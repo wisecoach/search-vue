@@ -4,14 +4,14 @@
       <employee-search @search="handleSearch"/>
     </el-card>
     <el-card class="container">
-      <employee-table :table-data="tableData" :loading="loading"></employee-table>
+      <manager-table :table-data="tableData" :loading="loading"></manager-table>
       <div class="pager">
         <el-pagination
           @current-change="handlePageChange"
           :current-page.sync="page"
           :page-size="pageSize"
           layout="total, prev, pager, next, jumper"
-          :total="1000">
+          :total="total">
         </el-pagination>
       </div>
     </el-card>
@@ -22,17 +22,18 @@
 import {searchInnerEmployee} from "@/api/search";
 import {formatBirth, formatDegree} from '@/utils/info-format'
 import DepartmentPicker from "@/components/department-picker";
-import EmployeeTable from "@/views/components/tables/employee-table";
+import ManagerTable from "@/views/components/tables/manager-table";
 import EmployeeSearch from "@/views/components/search/employee-search";
 
 export default {
   name: "search",
-  components: {EmployeeSearch, EmployeeTable, DepartmentPicker},
+  components: {EmployeeSearch, ManagerTable, DepartmentPicker},
   data() {
     return {
       tableData: [],
       pageSize: 10,
       page: 0,
+      total: 0,
       loading: true,
       key: {
         type: 'NAME',
@@ -60,6 +61,7 @@ export default {
       searchInnerEmployee(this.searchInfo).then(res=>{
         if (res.data.code === 100){
           let data = res.data.data
+          this.total = data.total
           let listdata = data.list
           this.tableData = []
           for (let item of listdata){

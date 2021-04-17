@@ -74,10 +74,13 @@
           @click="handleRoute('/employee/detail/' + scope.row.id)">查看详细信息</el-button>
         <el-button
           size="mini"
-          @click="handleRoute('/employee/evaluate/' + scope.row.id)">评价</el-button>
+          @click="handleRoute('/employee/attendance/' + scope.row.id)">考勤</el-button>
         <el-button
           size="mini"
-          @click="handleRoute('/employee/update/' + scope.row.id)">信息修改</el-button>
+          @click="handleRoute('/employee/performance/' + scope.row.id)">业绩</el-button>
+        <el-button
+          size="mini"
+        @click="handleRoute('/employee/evaluate/' + scope.row.id)">评价</el-button>
       </template>
     </el-table-column>
   </el-table>
@@ -87,7 +90,7 @@ import {getEmployeeList} from '@/api/employee'
 import {formatBirth, formatDegree} from '@/utils/info-format'
 
 export default {
-  name: "employee-table",
+  name: "manager-table",
   props: {
     tableData: {
       type: Array,

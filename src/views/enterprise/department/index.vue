@@ -135,8 +135,10 @@ export default {
       }).then(({ value }) => {
         changeDepartment({id: row.id, name: value}).then(res => {
           if (res.data.code === 100){
-            this.msgSuccess("修改成功");
+            this.$message.success(res.data.msg);
             this.getDepartments()
+          }else {
+            this.$message.error(res.data.msg)
           }
         });
       }).catch(() => {});

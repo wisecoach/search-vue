@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="total > 0">
     <el-collapse accordion v-model="activeName">
       <el-collapse-item v-for="comment in comments">
         <template slot="title">
@@ -24,6 +24,9 @@
     >
     </el-pagination>
   </div>
+  <div style="text-align: center" v-else>
+    暂时还没有记录哦~
+  </div>
 </template>
 
 <script>
@@ -42,7 +45,7 @@ export default {
       comments: [],
       page: 0,
       pageSize: 5,
-      total: 1000,
+      total: 0,
       activeName: null
     }
   },

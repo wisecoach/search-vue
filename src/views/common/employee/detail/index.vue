@@ -11,8 +11,13 @@
       <template slot="header">
         总体评分
       </template>
-      <score-rate :score="avgScore" />
-      <ap-rate :score="apScore" />
+      <div v-if="validScore">
+        <score-rate :score="avgScore" />
+        <ap-rate :score="apScore" />
+      </div>
+      <div style="text-align: center" v-else>
+        暂时还没有记录哦~
+      </div>
     </el-card>
     <el-card>
       <template slot="header">
@@ -41,29 +46,8 @@ export default {
       employee: {},
       careers: [],
       avgScore: null,
-      crimes: []
-    }
-  },
-  computed: {
-    apScore(){
-      let attendanceList = []
-      let performanceList = []
-      let avgAttendance = 0
-      let avgPerformance = 0
-      this.careers.map((item) => {
-        attendanceList.push(item.attendance)
-        avgAttendance += item.attendance
-        performanceList.push(item.performance)
-        avgPerformance += item.performance
-      })
-      avgAttendance /= this.careers.length * 20
-      avgPerformance /= this.careers.length * 20
-      return {
-        attendances: attendanceList,
-        performances: performanceList,
-        avgAttendance: avgAttendance,
-        avgPerformance: avgPerformance
-      }
+      crimes: [],
+      validScore: true
     }
   },
   methods: {
@@ -103,6 +87,36 @@ export default {
           this.crimes = res.data.data
         }
       })
+    },
+  },
+  computed: {
+    apScore(){
+      let attendanceList = []
+      let performanceList = []
+      let avgAttendance = 0
+      let avgPerformance = 0
+      this.careers.map((item) => {
+        if (item.attendance != null) {
+          attendanceList.push(item.attendance)
+          avgAttendance += item.attendance
+        }
+        if (item.performance != null) {
+          performanceList.push(item.performance)
+          avgPerformance += item.performance
+        }
+      })
+      if (attendanceList.length == 0 || performanceList.length) {
+        this.validScore = false
+      }else{
+        avgAttendance /= attendanceList.length * 20
+        avgPerformance /= performanceList.length * 20
+      }
+      return {
+        attendances: attendanceList,
+        performances: performanceList,
+        avgAttendance: avgAttendance,
+        avgPerformance: avgPerformance
+      }
     }
   },
   mounted() {

@@ -133,8 +133,10 @@ export default {
 }
 
 .user-info {
+  height: 450px;
   .user-avatar {
     text-align: center;
+    height: 250px;
 
     .user-name {
       font-weight: bold;

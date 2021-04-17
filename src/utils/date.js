@@ -1,4 +1,7 @@
 export function formatDate(date, format){
+  if (date == null) {
+    return null
+  }
   date = new Date(date)
   let o = {
     "M+" :date.getMonth() + 1, // month
@@ -40,6 +43,9 @@ export function formDateBeforeList(length, format, distance) {
 }
 
 export function formatDistance(from, to, format){
+  if (from == null) {
+    return null
+  }
   const fromDate = new Date(from)
   const toDate = to == null ? new Date() : new Date(to)
   const distance = toDate - fromDate

@@ -11,7 +11,7 @@
           :current-page.sync="page"
           :page-size="pageSize"
           layout="total, prev, pager, next, jumper"
-          :total="1000">
+          :total="total">
         </el-pagination>
       </div>
     </el-card>
@@ -33,6 +33,7 @@ export default {
       tableData: [],
       pageSize: 10,
       page: 0,
+      total: 0,
       loading: true,
       key: {
         type: 'NAME',
@@ -60,6 +61,7 @@ export default {
       searchInnerEmployee(this.searchInfo).then(res=>{
         if (res.data.code === 100){
           let data = res.data.data
+          this.total = data.total
           let listdata = data.list
           this.tableData = []
           for (let item of listdata){

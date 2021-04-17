@@ -12,7 +12,7 @@
           <div class="user-base">
             <div><span>在职公司：</span>{{user.enterprise}}</div>
             <div><span>在职部门：</span>{{user.department}}</div>
-            <div><span>职业：</span>部门主管</div>
+            <div><span>职位：</span>部门主管</div>
           </div>
         </el-card>
       </el-col>
@@ -132,8 +132,10 @@ export default {
 }
 
 .user-info {
+  height: 450px;
   .user-avatar {
     text-align: center;
+    height: 250px;
 
     .user-name {
       font-weight: bold;

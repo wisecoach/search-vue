@@ -132,7 +132,7 @@ module.exports = {
               title: '评价',
               icon: 'message'
             },
-            component: 'hr/employee/evaluate'
+            component: 'common/employee/evaluate'
           },
         ]
       },
@@ -177,6 +177,14 @@ module.exports = {
                 },
                 component: 'hr/recruit/search',
               },
+              {
+                path: 'archive',
+                meta: {
+                  icon: 'archive',
+                  title: '新建档案'
+                },
+                component: 'hr/recruit/archive'
+              }
             ]
           },
           {
@@ -222,7 +230,8 @@ module.exports = {
             meta: {
               title: '录用',
               icon: 'ststem'
-            }
+            },
+            component: 'hr/recruit/hire'
           }
         ]
       }
@@ -330,7 +339,8 @@ module.exports = {
             meta: {
               icon: 'attendance',
               title: '考勤'
-            }
+            },
+            component: 'manager/employee/attendance'
           },
           {
             path: 'performance',
@@ -346,7 +356,8 @@ module.exports = {
             meta: {
               icon: 'performance',
               title: '业绩'
-            }
+            },
+            component: 'manager/employee/performance'
           },
           {
             path: 'evaluate',
@@ -363,7 +374,7 @@ module.exports = {
               icon: 'message',
               title: '评价'
             },
-            component: 'manager/employee/evaluate'
+            component: 'common/employee/evaluate'
           },
         ],
       }

@@ -5,7 +5,7 @@
         <div>员工名称：{{career.employee.name}}</div>
         <div>在职公司：{{career.enterprise}}</div>
         <div>在职部门：{{career.department}}</div>
-        <div>就职职业：{{career.occupation}}</div>
+        <div>就职职位：{{career.occupation}}</div>
       </div>
     </el-col>
     <el-col :span="12">

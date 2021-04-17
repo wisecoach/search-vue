@@ -20,12 +20,12 @@
           <el-divider/>
           <div class="user-base">
             <div><span>在职公司：</span>{{user.enterprise}}</div>
-            <div><span>职业：</span>HR</div>
+            <div><span>职位：</span>HR</div>
           </div>
         </el-card>
       </el-col>
       <el-col :span="16">
-        <el-card>
+        <el-card class="user-info" header="从业人数变化折线图">
           <amount-line-chart />
         </el-card>
       </el-col>
@@ -139,6 +139,7 @@ export default {
 }
 
 .user-info {
+  height: 450px;
   .user-avatar {
     text-align: center;
 

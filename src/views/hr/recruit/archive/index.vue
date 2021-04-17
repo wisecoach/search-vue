@@ -1,94 +1,96 @@
 <template>
   <div v-if="employee">
-    <el-card class="root-card">
+    <el-form :model="employee" :rules="rules" label-width="80px" label-position="left">
+      <el-card class="root-card">
       <el-row :gutter="20" style="margin-top:10px;">
-      <el-col :span="8">
-        <div class="grid-content bg-purple">
-          <el-card class="box-card">
-            <div slot="header" class="clearfix">
-              <span>员工信息</span>
-            </div>
-            <div class="name-role">
-              <el-col :span="12">
-                <div class="sender">员工姓名：{{employee.name}}</div>
-              </el-col>
-              <el-col :span="12">
-                <div class="photo">
-                  <div>
-                    <el-upload
-                      style="margin-right: 10px; border: 1px dotted; border-radius: 5px"
-                      :show-file-list="false"
-                      action="http://localhost:8081/upload/photo"
-                      :auto-upload="false"
-                      :on-change="changeUpload"
-                    >
-                      <i style="width: 100px;height: 100px" class="el-icon-plus avatar-uploader-icon"></i>
-                    </el-upload>
+        <el-col :span="8">
+          <div class="grid-content bg-purple">
+            <el-card class="box-card">
+              <div slot="header" class="clearfix">
+                <span>档案信息</span>
+              </div>
+              <div class="name-role">
+                <el-col :span="16">
+                  <el-form-item prop="name" label="姓名">
+                    <el-input v-model="employee.name"></el-input>
+                  </el-form-item>
+                  <el-form-item prop="gender" label="性别">
+                    <el-radio v-model="employee.gender" :label="0">女</el-radio>
+                    <el-radio v-model="employee.gender" :label="1">男</el-radio>
+                  </el-form-item>
+                </el-col>
+                <el-col :span="8">
+                  <div class="photo">
+                    <div>
+                      <el-upload
+                        style="margin-right: 10px; border: 1px dotted; border-radius: 5px"
+                        :show-file-list="false"
+                        action="http://localhost:8081/upload/photo"
+                        :auto-upload="false"
+                        :on-change="changeUpload"
+                      >
+                        <el-image
+                          v-if="origin_photo"
+                          style="width: 100px;height: 100px;border-radius: 5px"
+                          :src="origin_photo">
+                        </el-image>
+                        <i v-else style="width: 100px;height: 100px" class="el-icon-plus avatar-uploader-icon"></i>
+                      </el-upload>
+                    </div>
                   </div>
-                  <div>
-                    <el-image
-                      style="width: 100px;height: 100px;margin-left: 20px;border-radius: 5px"
-                      :src="origin_photo">
-                    </el-image>
-                  </div>
+                </el-col>
+              </div>
+              <el-divider></el-divider>
+              <div class="tip">
+                <div><span>温馨提示：</span>
+                  <ol>
+                    <li>档案的姓名、性别、出生日期是无法修改的哦！！！</li>
+                    <li>如果学历是大学以下的，可以不填写毕业院校和主修专业</li>
+                    <li>简历可以上传图片或者PDF文件哦</li>
+                  </ol>
                 </div>
-              </el-col>
-            </div>
-            <el-divider></el-divider>
-            <div class="user-base">
-              <div><span>在职状态：</span>{{employee.hired?'在职':'未就职'}}</div>
-              <div><span>所属公司：</span>{{employee.enterprise}}</div>
-              <div><span>所属部门：</span>{{employee.department}}</div>
-            </div>
-          </el-card>
-        </div>
-      </el-col>
-      <el-col :span="16">
+              </div>
+            </el-card>
+          </div>
+        </el-col>
+        <el-col :span="16">
           <el-card class="box-card">
             <div slot="header" class="clearfix">
               <span>基本资料</span>
             </div>
-            <el-form :model="employee" label-width="80px" label-position="left">
               <el-row :gutter="30">
                 <el-col :span="12">
-                  <el-form-item label="性别">
-                    {{employee.gender==1?'男':'女'}}
+                  <el-form-item label="出生日期" prop="birth">
+                    <el-date-picker v-model="employee.birth" />
                   </el-form-item>
-                  <el-form-item label="出生日期">
-                    {{formatDate(employee.birth, 'yyyy-MM-dd')}}
-                  </el-form-item>
-                  <el-form-item label="工龄">
-                    {{employee.seniority}}
-                  </el-form-item>
-                  <el-form-item label="联系电话">
+                  <el-form-item label="联系电话" prop="tel">
                     <el-input v-model="employee.tel">
                     </el-input>
                   </el-form-item>
-                  <el-form-item label="电子邮箱">
+                  <el-form-item label="电子邮箱" prop="mail">
                     <el-input v-model="employee.mail">
+                    </el-input>
+                  </el-form-item>
+                  <el-form-item label="地址" prop="address">
+                    <el-input v-model="employee.address">
                     </el-input>
                   </el-form-item>
                 </el-col>
                 <el-col :span="12">
-                  <el-form-item label="地址">
-                    <el-input v-model="employee.address">
-                    </el-input>
-                  </el-form-item>
-                  <el-form-item label="主修专业">
+                  <el-form-item label="主修专业" prop="major">
                     <el-input v-model="employee.major">
                     </el-input>
                   </el-form-item>
-                  <el-form-item label="学历层次">
+                  <el-form-item label="学历层次" prop="degree">
                     <el-select v-model="employee.degree" style="width: 100%">
                       <el-option v-for="(value, key) in degrees" :value="Number(key)" :label="value"/>
                     </el-select>
                   </el-form-item>
-                  <el-form-item label="毕业院校">
+                  <el-form-item label="毕业院校" prop="school">
                     <el-input v-model="employee.school">
                     </el-input>
                   </el-form-item>
-                  <el-form-item label="简历">
-                    <a target="_blank" :href="employee.resume">查看简历</a>
+                  <el-form-item label="简历" prop="resume">
                     <el-upload
                       :show-file-list="false"
                       style="display: inline-block;float:right;"
@@ -101,16 +103,16 @@
                   </el-form-item>
                 </el-col>
               </el-row>
-            </el-form>
           </el-card>
-      </el-col>
-    </el-row>
+        </el-col>
+      </el-row>
       <div class="submit-button">
-        <el-button @click="handleUpdate" :disabled="uploading" type="primary">
-          {{uploading?'正在上传...':'确认修改'}}
+        <el-button @click="handleNewArchive" :disabled="uploading" type="primary">
+          {{uploading?'正在上传...':'新建档案'}}
         </el-button>
       </div>
     </el-card>
+    </el-form>
     <el-dialog title="头像裁剪" :visible.sync="dialogVisible" append-to-body>
       <div class="cropper-content">
         <div class="cropper" style="text-align: center">
@@ -145,21 +147,28 @@
 <script>
 import {formatDate} from "@/utils/date";
 import {degrees} from '@/utils/info-format'
-import {searchInfobyId} from "@/api/info";
+import {createEmployeeInfo} from "@/api/info";
 import {uploadPhoto} from '@/api/upload'
 import {changeEmployeeInfo} from '@/api/info'
 
 export default {
-  name: "update",
+  name: "archive",
   data(){
     return{
-      photoInfo: null,
-      employee: null,
+      employee: {},
       origin_photo: null,
-      new_photo: null,
       degrees,
       uploading: false,
       dialogVisible: false,
+      rules: {
+        name: [{required: true, message: '请输入姓名', trigger: 'blur'}],
+        gender: [{required: true, message: '请选择性别', trigger: 'blur'}],
+        birth: [{required: true, message: '请选择出生日期', trigger: 'blur'}],
+        tel: [{required: true, message: '请输入电话', trigger: 'blur'}],
+        mail: [{required: true, message: '请输入邮箱', trigger: 'blur'}],
+        address: [{required: true, message: '请输入地址', trigger: 'blur'}],
+        degree: [{required: true, message: '请选择学历', trigger: 'blur'}],
+      },
       // 裁剪组件的基础配置option
       option: {
         img: '', // 裁剪图片的地址
@@ -183,18 +192,6 @@ export default {
     }
   },
   methods: {
-    init(){
-      this.getEmployee()
-    },
-    getEmployee(){
-      searchInfobyId(this.$route.params.id).then(res => {
-        if (res.data.code === 100) {
-          this.employee = res.data.data
-          this.origin_photo = this.employee.photo
-          this.employee.photo = null
-        }
-      })
-    },
     handleUploading(){
       this.uploading = true
     },
@@ -218,7 +215,7 @@ export default {
           if (res.data.code === 100) {
             this.employee.photo = res.data.data
             this.$message.success(res.data.msg)
-          } else {
+          }else {
             this.$message.error(res.data.msg)
           }
         })
@@ -233,11 +230,15 @@ export default {
         this.$message.error(res.data.msg)
       }
     },
-    handleUpdate(){
-      changeEmployeeInfo(this.employee).then(res => {
-        this.$message.success(res.data.msg)
+    handleNewArchive(){
+      createEmployeeInfo(this.employee).then(res => {
         if (res.data.code === 100){
-          this.getEmployee()
+          this.$message.success(res.data.msg)
+          if (res.data.data) {
+            this.$router.push('/recruit/detail/' + res.data.data)
+          }
+        }else {
+          this.$message.error(res.data.msg)
         }
       })
     },
@@ -259,7 +260,7 @@ export default {
 }
 
 .box-card {
-  height: 430px;
+  height: 400px;
 }
 
 .name-role {
@@ -305,7 +306,7 @@ export default {
 }
 
 .photo {
-  width: 220px;
+  width: 110px;
   height: 100px;
   float: right;
 
@@ -330,6 +331,17 @@ export default {
   .cropper {
     width: auto;
     height: 500px;
+  }
+}
+
+.tip {
+  ol {
+    margin-left: 20px;
+
+    li {
+      font-size: 16px;
+      padding-top: 10px;
+    }
   }
 }
 
