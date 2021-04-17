@@ -4,8 +4,8 @@
       <el-collapse-item v-for="comment in comments">
         <template slot="title">
           <div class="comment-title">
-            <span>工作态度：{{comment.attitude.toFixed(0)}}</span>
-            <span>工作能力：{{comment.ability.toFixed(0)}}</span>
+            <span>工作态度：{{comment.attitude && comment.attitude.toFixed(0) || 0}}</span>
+            <span>工作能力：{{comment.ability && comment.ability.toFixed(0) || 0}}</span>
             <span>评价者：{{comment.isHr?'HR': '部门主管'}}</span>
             <span>评价时间：{{formatDate(comment.ctime, 'yyyy年MM月dd日')}}</span>
           </div>

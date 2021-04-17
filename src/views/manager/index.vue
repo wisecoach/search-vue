@@ -15,10 +15,16 @@
             <div><span>职位：</span>部门主管</div>
           </div>
         </el-card>
+        <el-card header="温馨提示">
+
+        </el-card>
       </el-col>
       <el-col :span="16">
         <el-card>
           <amount-line-chart />
+        </el-card>
+        <el-card>
+          <occupation-pie-chart />
         </el-card>
       </el-col>
     </el-row>
@@ -58,10 +64,11 @@ import AmountLineChart from '@/views/components/charts/amount-line-chart'
 import 'vuex'
 import {mapState} from "vuex";
 import {changePhoto} from "@/api/upload";
+import OccupationPieChart from "@/views/components/charts/occupation-pie-chart";
 
 export default {
   name: "index",
-  components: {AmountLineChart},
+  components: {OccupationPieChart, AmountLineChart},
   data() {
     return {
       loading: false,
@@ -128,7 +135,9 @@ export default {
 
 <style lang="scss" scoped>
 
-.index-page {
+.el-card{
+  margin-bottom: 20px;
+  height: 450px;
 }
 
 .user-info {

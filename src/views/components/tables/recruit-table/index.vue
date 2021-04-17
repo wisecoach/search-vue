@@ -32,7 +32,7 @@
       width="100"
       sortable>
       <template slot-scope="scope">
-        {{scope.row.seniority.toFixed(1)}}年
+        {{scope.row.seniority && scope.row.seniority.toFixed(1) || 0.0}}年
       </template>
     </el-table-column>
     <el-table-column

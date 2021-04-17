@@ -10,7 +10,7 @@
     </el-col>
     <el-col :span="12">
       <div class="career-wrapper">
-        <div>工作经验：{{career.employee.seniority.toFixed(1)}}年</div>
+        <div>工作经验：{{career.employee.seniority && career.employee.seniority.toFixed(1) || 0.0}}年</div>
         <div>就职时间：{{formatDate(career.stime, "yyyy年MM月dd日")}}</div>
         <div>离职时间：{{formatDate(career.etime, "yyyy年MM月dd日")}}</div>
         <div>工作时长：{{formatDistance(career.stime, career.etime)}}</div>

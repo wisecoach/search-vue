@@ -107,7 +107,7 @@ export default {
   },
   methods: {
     initChart() {
-      this.chart = echarts.init(this.$refs.chart, this.theme === 'theme-dark' ? 'dark' : 'macarons2')
+      this.chart = echarts.init(this.$refs.chart, chart_theme_options[this.theme])
       this.handleAddOccupation()
     },
     setOptions() {
