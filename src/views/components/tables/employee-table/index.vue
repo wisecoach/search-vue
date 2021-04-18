@@ -78,12 +78,16 @@
         <el-button
           size="mini"
           @click="handleRoute('/employee/update/' + scope.row.id)">信息修改</el-button>
+        <el-button
+          size="mini"
+          @click="handleDismiss(scope.row)">辞退</el-button>
       </template>
     </el-table-column>
   </el-table>
 </template>
 <script>
 import {getEmployeeList} from '@/api/employee'
+import {employerQuit} from '@/api/career'
 import {formatBirth, formatDegree} from '@/utils/info-format'
 
 export default {
@@ -106,6 +110,26 @@ export default {
     },
     handleCommand(val){
       this.$router.push({path: val})
+    },
+    handleDismiss(val){
+      this.$confirm('是否要辞退员工"' + val.name + '" ？', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'danger'
+      }).then(() => {
+        employerQuit(val.id).then(res => {
+          if (res.data.code === 100) {
+            this.$message.success(res.data.msg)
+          }else {
+            this.$message.error(res.data.msg)
+          }
+        })
+      }).catch(() => {
+        this.$message({
+          type: 'info',
+          message: '已取消删除'
+        });
+      });
     },
     formatBirth,formatDegree
   },
