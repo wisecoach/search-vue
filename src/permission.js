@@ -17,6 +17,7 @@ router.beforeEach((to, from, next) => {
       next({ path: '/' })
       NProgress.done()
     } else {
+      window.document.title = to.meta.title == undefined?'默认标题':to.meta.title
       next()
     }
   }

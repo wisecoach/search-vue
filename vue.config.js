@@ -6,7 +6,7 @@ function resolve(dir) {
   return path.join(__dirname, dir)
 }
 
-const name = defaultSettings.title || '若依管理系统' // 标题
+const name = defaultSettings.title || 'Search斯尔奇人才管理系统' // 标题
 const API_BASE = process.env.VUE_API_BASE_API
 const port = process.env.port || process.env.npm_config_port || 80 // 端口
 

@@ -66,7 +66,6 @@ export default {
 
         if (!this.chalk) {
           const url = `${API_BASE}/${this.$store.state.settings.theme}.css`
-          console.log(url)
           await this.getCSSString(url, 'chalk')
         }
 
