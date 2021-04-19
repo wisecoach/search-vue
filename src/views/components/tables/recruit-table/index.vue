@@ -7,7 +7,7 @@
     <el-table-column
       label="姓名"
       width="150"
-      sortable>
+      >
       <template slot-scope="scope">
         {{ scope.row.name }}
       </template>
@@ -22,7 +22,7 @@
     <el-table-column
       label="年龄"
       width="100"
-      sortable>
+      >
       <template slot-scope="scope">
         {{ formatBirth(scope.row.birth) }}
       </template>
@@ -30,7 +30,7 @@
     <el-table-column
       label="工龄"
       width="100"
-      sortable>
+      >
       <template slot-scope="scope">
         {{scope.row.seniority && scope.row.seniority.toFixed(1) || 0.0}}年
       </template>
@@ -38,7 +38,7 @@
     <el-table-column
       label="学历"
       width="150"
-      sortable>
+      >
       <template slot-scope="scope">
         {{formatDegree(scope.row.degree)}}
       </template>
@@ -67,16 +67,6 @@
         <el-button
           size="mini"
           @click="handleRoute('/recruit/hire/' + scope.row.id)">录用</el-button>
-        <el-dropdown style="float: right" @command="handleCommand">
-          <el-button
-            size="mini"
-            icon="el-icon-more"
-            circle
-            ></el-button>
-          <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item :command="'/employee/info-update/'+scope.row.id">信息修改</el-dropdown-item>
-          </el-dropdown-menu>
-        </el-dropdown>
       </template>
     </el-table-column>
   </el-table>

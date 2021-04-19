@@ -105,9 +105,10 @@ export default {
           avgPerformance += item.performance
         }
       })
-      if (attendanceList.length == 0 || performanceList.length) {
+      if (attendanceList.length == 0 || performanceList.length == 0) {
         this.validScore = false
       }else{
+        this.validScore = true
         avgAttendance /= attendanceList.length * 20
         avgPerformance /= performanceList.length * 20
       }
@@ -117,6 +118,11 @@ export default {
         avgAttendance: avgAttendance,
         avgPerformance: avgPerformance
       }
+    }
+  },
+  watch: {
+    apScore: function () {
+
     }
   },
   mounted() {

@@ -7,7 +7,7 @@
     <el-table-column
       label="姓名"
       width="150"
-      sortable>
+      >
       <template slot-scope="scope">
         {{ scope.row.name }}
       </template>
@@ -15,7 +15,7 @@
     <el-table-column
       label="部门"
       width="100"
-      sortable>
+      >
       <template slot-scope="scope">
         {{scope.row.department}}
       </template>
@@ -30,7 +30,7 @@
     <el-table-column
       label="年龄"
       width="100"
-      sortable>
+      >
       <template slot-scope="scope">
         {{ formatBirth(scope.row.birth) }}
       </template>
@@ -38,7 +38,7 @@
     <el-table-column
       label="工龄"
       width="100"
-      sortable>
+      >
       <template slot-scope="scope">
         {{scope.row.seniority && scope.row.seniority.toFixed(1) || 0.0}}年
       </template>
@@ -46,7 +46,7 @@
     <el-table-column
       label="学历"
       width="150"
-      sortable>
+      >
       <template slot-scope="scope">
         {{formatDegree(scope.row.degree)}}
       </template>

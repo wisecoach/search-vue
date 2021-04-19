@@ -92,8 +92,7 @@
                     <el-upload
                       :show-file-list="false"
                       style="display: inline-block;float:right;"
-                      action="http://localhost:8081/upload/resume"
-                      :before-upload="handleUploading"
+                      :action="API_BASE + '/upload/resume'"
                       :on-success="handleResumeUploadSucc"
                     >
                       <el-button type="text">上传简历</el-button>
@@ -143,6 +142,7 @@
 </template>
 
 <script>
+import {API_BASE} from '@/utils/constants'
 import {formatDate} from "@/utils/date";
 import {degrees} from '@/utils/info-format'
 import {searchInfobyId} from "@/api/info";
@@ -153,6 +153,7 @@ export default {
   name: "update",
   data(){
     return{
+      API_BASE,
       photoInfo: null,
       employee: null,
       origin_photo: null,

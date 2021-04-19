@@ -1,7 +1,6 @@
 <template>
   <div class="login">
     <div class="logo">
-      <svg-icon icon-class="logo" />
     </div>
     <el-form ref="loginForm" status-icon :model="loginForm" :rules="rules" class="login-form">
       <h3 class="title">斯尔奇人才管理系统</h3>
@@ -36,9 +35,9 @@
       </el-form-item>
     </el-form>
 
-    <div class="el-login-footer">
-      <span>Copyright © 2018-2021 watering All Rights Reserved.</span>
-    </div>
+<!--    <div class="el-login-footer">-->
+<!--      <span>Copyright © 2018-2021 watering All Rights Reserved.</span>-->
+<!--    </div>-->
   </div>
 </template>
 

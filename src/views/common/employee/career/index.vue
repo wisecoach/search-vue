@@ -76,14 +76,17 @@ export default {
           attendanceList.push(item.attendance)
           avgAttendance += item.attendance
         }
+      })
+      this.performances.map((item) => {
         if (item.performance != null) {
           performanceList.push(item.performance)
           avgPerformance += item.performance
         }
       })
-      if (attendanceList.length == 0 || performanceList.length) {
+      if (attendanceList.length === 0 || performanceList.length === 0) {
         this.validScore = false
       }else{
+        this.validScore = true
         avgAttendance /= attendanceList.length * 20
         avgPerformance /= performanceList.length * 20
       }
@@ -100,7 +103,6 @@ export default {
           ...this.career,
           employee: this.employee
         }
-        console.log(career)
         return career
       }
     }
@@ -159,6 +161,11 @@ export default {
           this.crimes = res.data.data
         }
       })
+    }
+  },
+  watch: {
+    apScore: function () {
+
     }
   },
   mounted() {

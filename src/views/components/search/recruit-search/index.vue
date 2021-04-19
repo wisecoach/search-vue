@@ -10,17 +10,17 @@
     <el-collapse @change="handleCollapse">
       <el-collapse-item>
         <template slot="title">{{collapseTitle}}</template>
-      <search-filter
-        v-for="(filter, key) in filter_map"
-        :key="key"
-        @close="handleRemoveFilter"
-        :filter-data="filter[1]"/>
+        <search-filter
+          v-for="(filter, index) in filters"
+          :key="filter.type"
+          @close-filter="handleRemoveFilter"
+          :filter-data="filter"/>
       <el-select v-if="selecting" v-model="new_filter_index" @change="handleNewFilterSelect" placeholder="过滤器类型">
         <el-option
           v-for="(option, index) in options.filter_type"
           :label="option.label"
           :value="index"
-          :disabled="filters.get(option.value)!=null"/>
+          :disabled="selected_filters.indexOf(option.value)!==-1"/>
       </el-select>
       <div v-else style="padding-top: 20px">
         <el-button @click="handleNewFilterClick">新增过滤器</el-button>
@@ -47,8 +47,8 @@ export default {
       },
       selecting: false,
       new_filter_index: null,
-      filters: new Map(),
-      filter_tracker: 0,
+      filters: [],
+      selected_filters: [],
       options: search_options.search_recruit_options,
     }
   },
@@ -65,10 +65,6 @@ export default {
       list.push(this.handleSingleVal)
       return list
     },
-    filter_map(){
-      let x = this.filter_tracker
-      return this.filters
-    },
     search_params(){
       const params = {
         filters: Array.from(this.filters.values()).map(item => {
@@ -83,27 +79,32 @@ export default {
     }
   },
   methods: {
+    getIndex(type){
+      return this.selected_filters.indexOf(type)
+    },
     handleNewFilterClick(){
       this.new_filter_index = null
       this.selecting = true
     },
     handleRemoveFilter(type){
-      this.filters.delete(type)
-      this.filter_tracker += 1
+      const index = this.getIndex(type)
+      this.filters.splice(index, 1)
+      this.selected_filters.splice(index, 1)
     },
     handleClearFilter(){
-      this.filters = new Map()
-      this.filter_tracker += 1
+      this.filters = []
+      this.selected_filters = []
     },
     handleNewFilterSelect(val){
       this.selecting = false
       const type = this.options.filter_type[val].value
       const filter = {
         type,
-        handler: this.handlerList[val]
+        handler: this.handlerList[val],
+        value: '-'
       }
-      this.filters.set(type, filter)
-      this.filter_tracker += 1
+      this.filters.push(filter)
+      this.selected_filters.push(type)
     },
     handleCollapse(){
       this.use_filter = !this.use_filter
@@ -112,13 +113,11 @@ export default {
       this.$emit('search', this.search_params)
     },
     handleSingleVal(val, type){
-      this.filters.get(type).value = val + '-' + val
-      console.log(this.filters)
+      this.filters[this.getIndex(type)].value = val + '-' + val
     },
     handleDoubleVal(val, type){
       let data = val[0] + '-' + val[1]
-      this.filters.get(type).value = data
-      console.log(this.filters)
+      this.filters[this.getIndex(type)].value = data
     }
   }
 }

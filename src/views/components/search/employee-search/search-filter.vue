@@ -61,7 +61,7 @@ export default {
   },
   methods: {
     handleClose(){
-      this.$emit("close", this.filterData.type)
+      this.$emit("close-filter", this.filterData.type)
     }
   }
 }

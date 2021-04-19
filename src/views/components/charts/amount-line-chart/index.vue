@@ -108,7 +108,7 @@ export default {
   methods: {
     initChart() {
       this.chart = echarts.init(this.$refs.chart, chart_theme_options[this.theme])
-      this.handleAddOccupation()
+      this.chart.setOption(this.option, true )
     },
     setOptions() {
       this.chart.clear()

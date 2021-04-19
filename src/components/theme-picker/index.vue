@@ -8,8 +8,8 @@
 </template>
 
 <script>
+import {API_BASE} from "@/utils/constants";
 import {mapState} from 'vuex'
-const version = require('element-ui/package.json').version // element-ui version from node_modules
 const ORIGINAL_THEME = '#409EFF' // default color
 
 export default {
@@ -65,7 +65,8 @@ export default {
         }
 
         if (!this.chalk) {
-          const url = `http://localhost:8081/theme-dark.css`
+          const url = `${API_BASE}/${this.$store.state.settings.theme}.css`
+          console.log(url)
           await this.getCSSString(url, 'chalk')
         }
 
@@ -125,7 +126,7 @@ export default {
           }
         }
 
-        const url = `http://localhost:8081/${this.theme}.css`
+        const url = `${API_BASE}/${this.$store.state.settings.theme}.css`
         await this.getCSSString(url, 'chalk')
 
         const chalkHandler = getHandler('chalk', 'chalk-style')

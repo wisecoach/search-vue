@@ -5,14 +5,17 @@
         <div slot="header">
           工作态度
         </div>
-        <el-rate v-model="score.attitude"
-                 :disabled="disable"
-                 :max="5"
-                 show-text
-                 text-color="#ff9900"
-                 :texts="texts_attitude"
+        <el-rate
+          v-if="score.attitude == 'NaN'"
+          v-model="score.attitude"
+          :disabled="disable"
+          :max="5"
+          show-text
+          text-color="#ff9900"
+          :texts="texts_attitude"
         >
         </el-rate>
+        <div v-else>暂无数据哦~</div>
       </el-card>
     </el-col>
     <el-col :span="12">
@@ -20,14 +23,17 @@
         <div slot="header">
           工作能力
         </div>
-        <el-rate v-model="score.ability"
-                 :disabled="disable"
-                 :max="5"
-                 show-text
-                 text-color="#ff9900"
-                 :texts="texts_ability"
+        <el-rate
+          v-if="score.ability == 'NaN'"
+          v-model="score.ability"
+          :disabled="disable"
+          :max="5"
+          show-text
+          text-color="#ff9900"
+          :texts="texts_ability"
         >
         </el-rate>
+        <div v-else>暂无数据哦~</div>
       </el-card>
     </el-col>
   </div>
@@ -51,6 +57,11 @@ export default {
       texts_ability: ['能力差','能力较差','能力一般','能力较好','能力极好',]
     }
   },
+  computed: {
+    validScore(){
+
+    }
+  }
 }
 </script>
 
