@@ -2,9 +2,9 @@
   <div>
     <occupation-picker @select="handleSelect" style="display: inline-block"></occupation-picker>
     <el-button @click="handleAddOccupation" :disabled="!selected">
-      新增职业
+      确认
     </el-button>
-    <div ref="chart" :style="{height:'350px',width:'100%'}">
+    <div ref="chart" :style="{height:'300px',width:'100%'}">
     </div>
   </div>
 </template>

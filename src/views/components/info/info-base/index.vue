@@ -46,7 +46,7 @@
                     {{formatDate(employee.birth, 'yyyy-MM-dd')}}
                   </el-form-item>
                   <el-form-item label="工龄">
-                    {{employee.seniority}}
+                    {{employee.seniority && employee.seniority.toFixed(1) || 0.0}}年
                   </el-form-item>
                   <el-form-item label="联系电话">
                     {{employee.tel}}

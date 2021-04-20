@@ -5,7 +5,16 @@
         <el-card class="user-info">
           <template slot="header">用户信息</template>
           <div class="user-avatar">
-            <el-avatar :src="user.photo" :size="80"></el-avatar>
+            <el-upload
+              :show-file-list="false"
+              action="http://localhost:8081/upload/photo"
+              :auto-upload="false"
+              :on-change="changeUpload">
+              <div class="hover-avatar">
+                <div class="info">更换头像</div>
+                <el-avatar class="avatar" :src="user.photo" :size="80"></el-avatar>
+              </div>
+            </el-upload>
             <div class="user-name">{{user.name}}</div>
           </div>
           <el-divider/>
@@ -16,14 +25,28 @@
           </div>
         </el-card>
         <el-card header="温馨提示">
-
+          <div class="title"><h3>功能特点</h3></div>
+          <ol>
+            <li>本系统用于人才招聘，不用于公司人员管理</li>
+            <li>本系统采用关键字和过滤器双引擎搜索</li>
+            <li>本系统基于数据形成可视化图表方便查看</li>
+          </ol>
+          <div class="title"><h3>使用须知</h3></div>
+          <ol>
+            <li>用户注册必须通过公司账号进行注册个人用户不能注册</li>
+            <li>所有用户基于公司账号，公司账号到期所属的账号都无法登陆</li>
+            <li>不要轻易泄露自己的账号，注意保护人才隐私问题</li>
+            <li>请客观公正的评价员工，保证系统的准确性</li>
+            <li>技术支持电话：8888 8888</li>
+            <li>其他联系方式: watering@zjnu.cn</li>
+          </ol>
         </el-card>
       </el-col>
       <el-col :span="16">
-        <el-card>
+        <el-card class="user-info" header="从业人数变化折线图">
           <amount-line-chart />
         </el-card>
-        <el-card>
+        <el-card header="职业人数占比饼状图">
           <occupation-pie-chart />
         </el-card>
       </el-col>
@@ -137,13 +160,21 @@ export default {
 .el-card{
   margin-bottom: 20px;
   height: 450px;
+
+  .title {
+    text-align: center;
+    padding-bottom: 5px;
+    padding-top: 10px;
+  }
+
+  ol {
+    margin-left: 20px;
+  }
 }
 
 .user-info {
-  height: 450px;
   .user-avatar {
     text-align: center;
-    height: 250px;
 
     .user-name {
       font-weight: bold;
@@ -162,6 +193,46 @@ export default {
     }
   }
 }
+
+
+.hover-avatar {
+  width: 80px;
+  height: 80px;
+  background-color: rgba(0,0,0,.8);
+  border-radius: 40px;
+  position: relative;
+  margin: auto;
+  cursor: pointer;
+
+  .info {
+    width: 80px;
+    height: 80px;
+    line-height: 80px;
+    text-align: center;
+    position: absolute;
+    left: 0;
+    color: #FFFFFF;
+    opacity: 1;
+  }
+
+  .avatar {
+    display: block;
+    width: 100%;
+  }
+
+  .avatar {
+    position: absolute;
+    left: 0;
+  }
+
+  &:hover{
+    .avatar {
+      opacity: 0.25;
+      transition: opacity 0.3s;
+    }
+  }
+}
+
 
 .cropper-content {
   .cropper {

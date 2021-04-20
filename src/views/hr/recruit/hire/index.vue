@@ -62,7 +62,7 @@
                       {{formatDate(employee.birth, 'yyyy-MM-dd')}}
                     </el-form-item>
                     <el-form-item label="工龄">
-                      {{employee.seniority}}
+                      {{employee.seniority && employee.seniority.toFixed(1) || 0.0}}年
                     </el-form-item>
                     <el-form-item label="联系电话">
                       <el-input v-model="employee.tel">
@@ -96,7 +96,7 @@
                       <el-upload
                         :show-file-list="false"
                         style="display: inline-block;float:right;"
-                        action="http://localhost:8081/upload/resume"
+                        :action="API_BASE + '/upload/resume'"
                         :before-upload="handleUploading"
                         :on-success="handleResumeUploadSucc"
                       >
@@ -147,6 +147,7 @@
 </template>
 
 <script>
+import {API_BASE} from '@/utils/constants'
 import {formatDate} from "@/utils/date";
 import {degrees} from '@/utils/info-format'
 import {searchInfobyId, changeEmployeeInfo} from "@/api/info";
@@ -160,6 +161,7 @@ export default {
   components: {DepartmentPicker, OccupationPicker},
   data(){
     return{
+      API_BASE,
       photoInfo: null,
       employee: null,
       origin_photo: null,

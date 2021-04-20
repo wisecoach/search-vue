@@ -94,7 +94,7 @@
                     <el-upload
                       :show-file-list="false"
                       style="display: inline-block;float:right;"
-                      action="http://localhost:8081/upload/resume"
+                      :action="API_BASE + '/upload/resume'"
                       :before-upload="handleUploading"
                       :on-success="handleResumeUploadSucc"
                     >
@@ -145,6 +145,7 @@
 </template>
 
 <script>
+import {API_BASE} from '@/utils/constants'
 import {formatDate} from "@/utils/date";
 import {degrees} from '@/utils/info-format'
 import {createEmployeeInfo} from "@/api/info";
@@ -155,6 +156,7 @@ export default {
   name: "archive",
   data(){
     return{
+      API_BASE,
       employee: {},
       origin_photo: null,
       degrees,

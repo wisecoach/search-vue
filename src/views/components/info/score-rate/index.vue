@@ -6,7 +6,7 @@
           工作态度
         </div>
         <el-rate
-          v-if="score.attitude == 'NaN'"
+          v-if="score.attitude != 0"
           v-model="score.attitude"
           :disabled="disable"
           :max="5"
@@ -24,7 +24,7 @@
           工作能力
         </div>
         <el-rate
-          v-if="score.ability == 'NaN'"
+          v-if="score.attitude != 0"
           v-model="score.ability"
           :disabled="disable"
           :max="5"

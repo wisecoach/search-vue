@@ -43,7 +43,10 @@ export default {
       formMess: {
         "desc": ""
       },
-      score: {}
+      score: {
+        ability: 5,
+        attitude: 5
+      }
     }
   },
   methods: {
@@ -60,6 +63,10 @@ export default {
       })
     },
     onSubmit() {
+      let score = {
+        ability: this.score.ability,
+        attitude: this.score.attitude
+      }
       detailedComment(this.score).then(res=>{
         if(res.data.code === 100){
           this.$message.success(res.data.msg)

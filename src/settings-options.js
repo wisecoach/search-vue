@@ -222,7 +222,7 @@ module.exports = {
               title: '录用',
               icon: 'hire'
             },
-            component: 'hr/employee/search'
+            component: 'hr/recruit/search'
           },
           {
             path: 'hire/:id',

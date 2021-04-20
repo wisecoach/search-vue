@@ -12,7 +12,7 @@
         <template slot="title">{{collapseTitle}}</template>
         <search-filter
           v-for="(filter, index) in filters"
-          :key="index"
+          :key="filter.type"
           @close-filter="handleRemoveFilter"
           :filter-data="filter"/>
       <el-select v-if="selecting" v-model="new_filter_index" @change="handleNewFilterSelect" placeholder="过滤器类型">
