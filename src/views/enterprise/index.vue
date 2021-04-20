@@ -100,7 +100,6 @@ export default {
       this.photoInfo = file
       this.$nextTick(() =>{
         this.option.img = URL.createObjectURL(file.raw)
-        console.log(this.option.img)
         this.dialogVisible = true
       })
     },

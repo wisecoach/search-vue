@@ -33,7 +33,6 @@ export default {
   },
   methods: {
     handle(){
-      console.log(document.getElementById('123'))
     }
   },
   computed: {
